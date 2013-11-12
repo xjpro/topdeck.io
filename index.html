@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="deckstats">
+<head>
+    <title>Deckstats</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/lodash.min.js"></script>
+    <script src="js/vendor/snap.svg-min.js"></script>
+    <script src="js/vendor/angular.js"></script>
+    <script src="js/app/all-cards.js"></script>
+    <script src="js/app/deckstats.js"></script>
+    <script src="js/app/deckstats-graphing.js"></script>
+    <script src="js/app/services/CardLookup.js"></script>
+    <script src="js/app/services/Deck.js"></script>
+    <script src="js/app/controllers/CardSelectionController.js"></script>
+    <script src="js/app/controllers/ChartController.js"></script>
+</head>
+<body>
+
+    <header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand">deckstats.io</span>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+
+        <div class="row" ng-controller="CardSelectionController">
+            <div class="col-md-9">
+                <div class="well card-selector">
+                    <button class="btn btn-default btn-paging-prev" ng-hide="cardPagesIndex == 0" ng-click="cardPagesIndex = cardPagesIndex-1">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-default btn-paging-next" ng-hide="cardPagesIndex == cardPagesCount-1" ng-click="cardPagesIndex = cardPagesIndex+1">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                    <div ng-switch="mode">
+                        <div ng-switch-when="Cards">
+                            Select by card images &mdash; Not implemented yet
+                        </div>
+                        <div ng-switch-when="List">
+                            <ul class="list-unstyled list-col3">
+                                <li ng-repeat="card in currentPage">
+                                    <button class="btn btn-link" ng-click="addCard(card)">{{card.name}}</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-pills nav-pills-sm pull-left">
+                    <li ng-class="{active: mode == 'Cards'}"><a ng-click="mode = 'Cards'">Cards</a></li>
+                    <li ng-class="{active: mode == 'List'}"><a ng-click="mode = 'List'">List</a></li>
+                </ul>
+                <div class="pull-right">
+
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-primary active dropdown-toggle" data-toggle="dropdown">
+                            {{classFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat="filter in classFilters">
+                                <a ng-click="$parent.classFilter = filter">{{filter}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary" ng-class="{active: $parent.costFilter == cost}" ng-click="$parent.costFilter = cost" ng-repeat="cost in costFilters">
+                            {{cost}}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <ul class="list-unstyled card-list" ng-show="!rawVisible">
+                    <li ng-repeat="card in deck.cards">
+                        <a ng-click="removeCard(card)">
+                            {{card.quantity}} {{card.name}}
+                        </a>
+                    </li>
+                </ul>
+                <textarea class="form-control textarea-fixed card-raw" rows="15" ng-model="rawSelection" ng-show="rawVisible">
+                </textarea>
+                <div class="pull-left">
+                    {{deck.count}} / 30
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-info btn-sm" ng-class="{active: rawVisible}" ng-click="rawVisible = !rawVisible">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#graph" data-toggle="tab">Graph</a></li>
+            <li><a href="#test" data-toggle="tab">Test</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="graph">
+
+                <div class="row" ng-controller="ChartController">
+                    <div class="col-md-2">
+                        <ul>
+                            <li>Here will</li>
+                            <li>go options</li>
+                            <li>for different graphs</li>
+                            <li>that can be toggled</li>
+                            <li>on and off</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-10">
+                        <svg id="card-graph" card-graph="graphData">
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="test">
+                <p>This is where testing draws will go!</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

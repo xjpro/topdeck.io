@@ -1,0 +1,62 @@
+body {
+    padding-top: 70px;
+}
+a, [ng-click] {
+    cursor: pointer;
+}
+.nav-pills-sm > li > a {
+    padding: 5px 10px;
+}
+.textarea-fixed {
+    resize: none;
+}
+
+/* selector */
+.card-selector,
+.card-list,
+textarea.card-raw {
+    height: 325px;
+    margin-bottom: 2px;
+}
+.card-selector {
+    overflow: hidden;
+}
+.card-list {
+    overflow-y: auto;
+}
+.card-list a {
+    display: inline-block;
+    width: 100%;
+}
+.list-col3 li {
+    display: inline-block;
+    width: 33.3%;
+}
+.list-col3 li button {
+    width: 100%;
+}
+.btn-paging-prev,
+.btn-paging-next {
+    position: absolute;
+    width: 25px;
+    height: 290px;
+    padding: 5px;
+}
+.btn-paging-prev {
+    left: 15px;
+}
+.btn-paging-next {
+    right: 15px;
+}
+
+
+/* chart styles */
+
+#card-graph {
+    width: 100%;
+    height: 300px;
+    border: dotted pink 1px;
+}
+#card-graph .curve-bar {
+
+}
