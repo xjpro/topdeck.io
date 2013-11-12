@@ -1,7 +1,8 @@
 app.factory("Deck", [function() {
     var Deck = {
         cards: [],
-        count: 0
+        count: 0,
+        size: 30
     };
 
     Deck.findCard = function(name) {
@@ -10,7 +11,7 @@ app.factory("Deck", [function() {
 
     Deck.addCard = function(card) {
 
-        if(Deck.count >= 30) return;
+        if(Deck.count >= Deck.size) return;
 
         var existingCard = Deck.findCard(card.name);
         if(existingCard) {
@@ -20,6 +21,7 @@ app.factory("Deck", [function() {
         } else {
             card.quantity = 1;
             Deck.cards.push(card);
+            Deck.cards = _.sortBy(Deck.cards, "cost");
         }
         Deck.count++;
     };
@@ -38,7 +40,7 @@ app.factory("Deck", [function() {
 
     Deck.filterHeroCards = function(allowed) {
         Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == allowed});
-        Deck.count = Deck.cards.count;
+        Deck.count = Deck.cards.count || 0;
     };
 
     return Deck;

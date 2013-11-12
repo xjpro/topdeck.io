@@ -6,12 +6,13 @@ app.directive("cardGraph", [function() {
         link: function(scope, element) {
             var s = Snap("#card-graph");
             var curveBarLabels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
-            var width, height, barWidth, stepHeight, curveBars, minionBars;
+            var width, height, barWidth, stepHeight, curveBars, minionBars, lines;
             var paddingBottom = 22;
 
             function setup() {
                 curveBars = [];
                 minionBars = [];
+                lines = [];
                 width = element.width();
                 height = element.height();
                 barWidth = width / curveBarLabels.length;
@@ -65,6 +66,36 @@ app.directive("cardGraph", [function() {
                     var minionBarHeight = minionCount * stepHeight;
                     minionBars[index].animate({ y: (height - paddingBottom - minionBarHeight), height: minionBarHeight}, 50);
                 });
+
+                // update all lines
+                _.each(graphData.lines, function(line) {
+                    var existing = _.find(lines, function(existingLine) { return existingLine.label == line.label; });
+                    if(!existing) {
+                        lines.push({
+                            label: line.label
+                        });
+                    }
+                    else {
+                        if(existing.path) existing.path.remove();
+                        existing.path = s.path(buildPath(line.data))
+                            .attr({
+                                fill: "none",
+                                stroke: "#666",
+                                strokeWidth: 2
+                            });
+                    }
+                });
+            }
+
+            function buildPath(yPoints) {
+                var pathString = ["M 0 " + Math.floor(height - paddingBottom)];
+                _.each(yPoints, function(pt, index) {
+                    var y = Math.floor((height - paddingBottom) * Math.max(0, (1-pt)));
+                    var s = " L " + Math.floor(index * barWidth + barWidth/2) + " " + y;
+                    pathString.push(s);
+                });
+                pathString.push(" L " + width + " " + Math.floor(height - paddingBottom));
+                return pathString.join('');
             }
 
             scope.$watch("data", function(newData) {
