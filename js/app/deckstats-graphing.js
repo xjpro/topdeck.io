@@ -80,21 +80,26 @@ app.directive("cardGraph", [function() {
                         existing.path = s.path(buildPath(line.data))
                             .attr({
                                 fill: "none",
-                                stroke: "#666",
+                                stroke: "#999",
                                 strokeWidth: 2
                             });
                     }
                 });
             }
 
+            function pathX(index) {
+                return Math.floor(index * barWidth + barWidth/2);
+            }
+            function pathY(point) {
+                return Math.floor((height - paddingBottom) * Math.max(0, (1-point)));
+            }
             function buildPath(yPoints) {
-                var pathString = ["M 0 " + Math.floor(height - paddingBottom)];
-                _.each(yPoints, function(pt, index) {
-                    var y = Math.floor((height - paddingBottom) * Math.max(0, (1-pt)));
-                    var s = " L " + Math.floor(index * barWidth + barWidth/2) + " " + y;
-                    pathString.push(s);
+                var pathString = ["M0," + Math.floor(height - paddingBottom) + " R"];
+                _.each(yPoints, function(y, index) {
+                    var point = { x: pathX(index), y: pathY(y) };
+                    pathString.push(point.x + "," + point.y + " ");
                 });
-                pathString.push(" L " + width + " " + Math.floor(height - paddingBottom));
+                pathString.push(width + "," + Math.floor(height - paddingBottom));
                 return pathString.join('');
             }
 
