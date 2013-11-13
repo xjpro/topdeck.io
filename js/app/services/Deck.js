@@ -17,13 +17,14 @@ app.factory("Deck", [function() {
         if(existingCard) {
             if(existingCard.quantity < 2) {
                 existingCard.quantity++;
+                Deck.count++;
             }
         } else {
             card.quantity = 1;
             Deck.cards.push(card);
             Deck.cards = _.sortBy(Deck.cards, "cost");
+            Deck.count++;
         }
-        Deck.count++;
     };
 
     Deck.removeCard = function(card) {
