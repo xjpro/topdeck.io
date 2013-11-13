@@ -6,12 +6,11 @@ app.directive("cardGraph", [function() {
         link: function(scope, element) {
             var s = Snap("#card-graph");
             var curveBarLabels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
-            var width, height, barWidth, stepHeight, curveBars, minionBars, lines;
+            var width, height, barWidth, stepHeight, curveBarGroups, lines;
             var paddingBottom = 22;
 
             function setup() {
-                curveBars = [];
-                minionBars = [];
+                curveBarGroups = [];
                 lines = [];
                 width = element.width();
                 height = element.height();
@@ -38,21 +37,26 @@ app.directive("cardGraph", [function() {
                     // todo label y-axis
 
                     // the curve/all bar
-                    bar = s.rect(x, y, barWidth, 0).attr({
+                    var allBar = s.rect(x, y, barWidth, 0).attr({
+                        class: "all-bar",
                         fill: "#54B2FF",
                         stroke: "#333",
                         strokeWidth: 1
                     });
-                    curveBars.push(bar);
-
                     // the minion bar
-                    bar = s.rect(x, y, barWidth, 0).attr({
+                    var minionBar = s.rect(x, y, barWidth, 0).attr({
+                        class: "minion-bar",
                         fill: "#428bca",
-                        //fillOpacity: "75%",
                         stroke: "#333",
                         strokeWidth: 1
                     });
-                    minionBars.push(bar);
+                    var label = s.text(x + barWidth/2, y, "").attr({
+                        textAnchor: "middle",
+                        stroke: "#999",
+                        fontSize: 10
+                    });
+
+                    curveBarGroups.push(s.g(label, allBar, minionBar));
                 });
             }
 
@@ -61,10 +65,15 @@ app.directive("cardGraph", [function() {
                     var minionCount = graphData.cardCounts.minions[index];
 
                     var barHeight = cardCount * stepHeight;
-                    curveBars[index].animate({ y: (height - paddingBottom - barHeight), height: barHeight}, 50);
+                    var barGroup = curveBarGroups[index];
+                    barGroup.select(".all-bar").animate({ y: (height - paddingBottom - barHeight), height: barHeight}, 50);
 
                     var minionBarHeight = minionCount * stepHeight;
-                    minionBars[index].animate({ y: (height - paddingBottom - minionBarHeight), height: minionBarHeight}, 50);
+                    barGroup.select(".minion-bar").animate({ y: (height - paddingBottom - minionBarHeight), height: minionBarHeight}, 50);
+
+                    barGroup.select("text")
+                        .attr({text: cardCount || ""})
+                        .animate({ y: (height - paddingBottom - barHeight - 6)}, 50);
                 });
 
                 // update all lines
