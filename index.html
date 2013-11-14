@@ -102,7 +102,7 @@
 
         <ul class="nav nav-tabs">
             <li class="active"><a href="#graph" data-toggle="tab">Graph</a></li>
-            <li><a href="#test" data-toggle="tab">Test</a></li>
+            <!--<li><a href="#test" data-toggle="tab">Test</a></li>-->
         </ul>
 
         <div class="tab-content">
@@ -110,12 +110,22 @@
 
                 <div class="row" ng-controller="ChartController">
                     <div class="col-md-2">
-                        <ul>
-                            <li>Here will</li>
-                            <li>go options</li>
-                            <li>for different graphs</li>
-                            <li>that can be toggled</li>
-                            <li>on and off</li>
+                        <ul class="list-unstyled">
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="showDrawChance"> Turn draw chance
+                                </label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="showLineAttack"> Minion attack
+                                </label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="showLineHealth"> Minion health
+                                </label>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-10">

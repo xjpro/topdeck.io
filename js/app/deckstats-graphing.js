@@ -10,7 +10,7 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
             var width, height, barWidth, stepHeight, curveBarGroups, lines;
             var steps = 12;
             var paddingBottom = 22;
-            var paddingSide = 22;
+            var paddingLeft = 22;
 
             function setup() {
 
@@ -20,14 +20,14 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                 lines = [];
                 width = element.width();
                 height = element.height();
-                barWidth = (width-paddingSide*2) / curveBarLabels.length;
+                barWidth = (width-paddingLeft) / curveBarLabels.length;
                 stepHeight = height / steps;
                 var bar;
 
                 // create mana curve & minion bars
                 _.each(curveBarLabels, function(label, index) {
 
-                    var x = (index * barWidth) + paddingSide;
+                    var x = (index * barWidth) + paddingLeft;
                     var y = height;
 
                     // axis labels
@@ -48,34 +48,34 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                         strokeWidth: 1
                     });
                     var label = s.text(x + barWidth/2, y, "").attr({
+                        class: "label",
                         textAnchor: "left",
                         stroke: "#999",
                         fontSize: 10
                     });
+                    var drawPercentageLabel = s.text(x + barWidth/2, y, "").attr({
+                        class: "label-draw",
+                        textAnchor: "middle",
+                        stroke: "#333",
+                        fontSize: 14
+                    });
 
-                    curveBarGroups.push(s.g(label, allBar, minionBar));
+                    curveBarGroups.push(s.g(allBar, minionBar, label, drawPercentageLabel));
                 });
 
                 // x-axis
-                s.line(paddingSide, height - paddingBottom, width - paddingSide, height - paddingBottom).attr({
+                s.line(paddingLeft, height - paddingBottom, width, height - paddingBottom).attr({
                     stroke: "#555",
                     strokeWidth: 1
                 });
 
                 // y-axis
-                s.line(paddingSide, height - paddingBottom, paddingSide, 0).attr({
-                    stroke: "#555",
-                    strokeWidth: 1
-                });
-                s.line(width - paddingSide, height - paddingBottom, width - paddingSide, 0).attr({
+                s.line(paddingLeft, height - paddingBottom, paddingLeft, 0).attr({
                     stroke: "#555",
                     strokeWidth: 1
                 });
                 for(var i = 2; i <= steps; i+=2) { // left side
                     s.text(0, height - paddingBottom - i * stepHeight, i).attr({ class: "axis-label" });
-                };
-                for(var i = 0; i < 10; i++) { // right side
-                    s.text(width - paddingSide + 5, height - paddingBottom - i * (height/11), "." + i).attr({ class: "axis-label" });
                 };
 
                 s.selectAll(".axis-label").attr({
@@ -86,7 +86,9 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
 
             function update(graphData) {
 
-                if(_.any(graphData.cardCounts.all, function(count) { return count >= steps - 2; })) {
+                var maxCardValue = _.max(graphData.cardCounts.all);
+                var maxLineValue = _.max(_.flatten(graphData.lines, "data"));
+                if(maxCardValue > steps - 3 || maxLineValue > steps - 3) {
                     steps += 5;
                     setup();
                     return update(graphData);
@@ -104,12 +106,19 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                     var minionBarHeight = minionCount * stepHeight;
                     barGroup.select(".minion-bar").animate({ y: (height - paddingBottom - minionBarHeight), height: minionBarHeight}, 50);
 
-                    barGroup.select("text")
+                    barGroup.select(".label")
                         .attr({text: cardCount || ""})
                         .animate({ y: (height - paddingBottom - barHeight - 5)}, 50);
+
+                    var turnDrawPercentage = graphData.cardCounts.turnDrawPercentages[index];
+
+                    barGroup.select(".label-draw")
+                        .attr({text: turnDrawPercentage ? turnDrawPercentage + "%" : ""})
+                        .animate({ y: (height - paddingBottom - barHeight/2)}, 50);
                 });
 
                 // update all lines
+                _.each(lines, function(line) { line.touched = false; });
                 _.each(graphData.lines, function(line) {
                     var existing = _.find(lines, function(existingLine) { return existingLine.label == line.label; });
                     if(!existing) {
@@ -117,27 +126,38 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                     }
 
                     if(existing.path) existing.path.remove();
-                    existing.path = s.path(buildPath(line.data)).attr({
+                    existing.path = s.path(buildPath(line.type, line.data)).attr({
                         fill: "none",
-                        stroke: "#999",
+                        stroke: line.color,
                         strokeWidth: 2
                     });
+                    existing.touched = true;
+                });
+
+                _.each(_.select(lines, function(line) { return !line.touched; }), function(line) {
+                    console.log(line);
+                    line.path.remove();
                 });
             }
 
             function pathX(index) {
-                return Math.floor(index * barWidth + barWidth/2) + paddingSide;
+                return Math.floor(index * barWidth + barWidth/2) + paddingLeft;
             }
-            function pathY(point) {
-                return Math.floor((height - paddingBottom) * Math.max(0, (1-point)));
+            function pathY(type, point) {
+                if(type == "percentage") {
+                    return Math.floor((height - paddingBottom) * Math.max(0, (1-point)));
+                }
+                if(type == "number") {
+                    return Math.floor((height - paddingBottom) - stepHeight * point);
+                }
             }
-            function buildPath(yPoints) {
-                var pathString = ["M" + paddingSide + "," + Math.floor(height - paddingBottom) + " R"];
+            function buildPath(type, yPoints) {
+                var pathString = ["M" + paddingLeft + "," + Math.floor(height - paddingBottom) + " R"];
                 _.each(yPoints, function(y, index) {
-                    var point = { x: pathX(index), y: pathY(y) };
+                    var point = { x: pathX(index), y: pathY(type, y) };
                     pathString.push(point.x + "," + point.y + " ");
                 });
-                pathString.push(width - paddingSide + "," + Math.floor(height - paddingBottom));
+                pathString.push(width + "," + Math.floor(height - paddingBottom));
                 // todo some kind of bug here when exceeding 25 cards, line too steep?
                 return pathString.join('');
             }
