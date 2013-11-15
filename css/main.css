@@ -4,6 +4,10 @@ body {
 a, [ng-click] {
     cursor: pointer;
 }
+.navbar .dropdown-menu {
+    top: 50px;
+    min-width: 200px;
+}
 .nav-pills-sm > li > a {
     padding: 5px 10px;
 }

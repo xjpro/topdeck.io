@@ -1,0 +1,10 @@
+{
+  "name": "Deckstats",
+  "description": "Sports management app",
+  "author": "Joshua Prodahl <jprodahl@gmail.com>",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.x",
+    "ejs": "*"
+  }
+}

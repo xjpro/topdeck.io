@@ -135,7 +135,6 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                 });
 
                 _.each(_.select(lines, function(line) { return !line.touched; }), function(line) {
-                    console.log(line);
                     line.path.remove();
                 });
             }
@@ -152,6 +151,7 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                 }
             }
             function buildPath(type, yPoints) {
+                // Catmull-Rom curve
                 var pathString = ["M" + paddingLeft + "," + Math.floor(height - paddingBottom) + " R"];
                 _.each(yPoints, function(y, index) {
                     var point = { x: pathX(index), y: pathY(type, y) };

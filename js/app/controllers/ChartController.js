@@ -6,7 +6,7 @@ app.controller("ChartController", ["$scope", "Deck", function($scope, Deck) {
     var turns = 10;
     var startingHand = 3;
 
-    $scope.$watch(function() { return Deck.count + $scope.showDrawChance; }, function() {
+    $scope.$watch(function() { return Deck.count + $scope.showDrawChance + $scope.showLineAttack + $scope.showLineHealth; }, function() {
 
         var minionCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var cardCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
