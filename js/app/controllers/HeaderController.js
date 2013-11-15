@@ -1,8 +1,8 @@
 
-app.controller("HeaderController", ["$scope", function($scope) {
+app.controller("HeaderController", ["$scope", "$resource", "Deck", function($scope, $resource, Deck) {
 
     $scope.saveDeck = function() {
-        console.log('save');
+        Deck.$save();
     };
     $scope.forkDeck = function() {
         console.log('fork');

@@ -1,9 +1,11 @@
-app.factory("Deck", [function() {
-    var Deck = {
-        cards: [],
-        count: 0,
-        size: 30
-    };
+app.factory("Deck", ["$resource", function($resource) {
+
+    var DeckResource = $resource("/decks/:deckId", {deckId: "@id"});
+
+    var Deck = new DeckResource();
+    Deck.cards = [];
+    Deck.count = 0;
+    Deck.size = 30;
 
     Deck.findCard = function(name) {
         return _.find(Deck.cards, function(otherCard) { return otherCard.name == name; });

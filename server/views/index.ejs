@@ -11,17 +11,19 @@
     <script src="js/vendor/snap.svg-min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/angular.js"></script>
+    <script src="js/vendor/angular-resource.min.js"></script>
     <script src="js/app/all-cards.js"></script>
     <script src="js/app/deckstats.js"></script>
     <script src="js/app/deckstats-graphing.js"></script>
     <script src="js/app/services/CardLookup.js"></script>
     <script src="js/app/services/Deck.js"></script>
+    <script src="js/app/controllers/HeaderController.js"></script>
     <script src="js/app/controllers/CardSelectionController.js"></script>
     <script src="js/app/controllers/ChartController.js"></script>
 </head>
 <body>
 
-<header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+<header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner" ng-controller="HeaderController">
     <div class="container">
         <div class="navbar-header">
             <div class="dropdown">
@@ -34,7 +36,9 @@
             </div>
         </div>
         <div class="navbar-form navbar-right">
-            <button type="button" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+            <button type="button" class="btn btn-success" ng-click="saveDeck()">
+                <i class="fa fa-save"></i> Save
+            </button>
         </div>
     </div>
 </header>
