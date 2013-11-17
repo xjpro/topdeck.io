@@ -1,10 +1,16 @@
 
-app.controller("HeaderController", ["$scope", "$resource", "Deck", function($scope, $resource, Deck) {
+app.controller("HeaderController", ["$scope", "Deck", function($scope, Deck) {
 
     $scope.saveDeck = function() {
-        Deck.$save();
+        if(Deck.guid) {
+            Deck.$update();
+        }
+        else {
+            Deck.$save();
+        }
     };
     $scope.forkDeck = function() {
         console.log('fork');
     };
+    
 }]);

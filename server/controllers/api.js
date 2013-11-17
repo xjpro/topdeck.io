@@ -1,9 +1,11 @@
 
 exports.getDeck = function(db) {
   return function(request, response) {
-      var deck = db.get('decks').findOne({ guid: request.params.guid }, {}, function(e, docs) {
-          console.log(docs);
-          response.json(docs);
+      db.get('decks').findOne({ guid: request.params.guid }, {}, function(error, deck) {
+          if(!deck) {
+              // 404 error
+          }
+          response.json(deck);
       });
   };
 };
@@ -14,8 +16,8 @@ exports.saveDeck = function(db) {
         var requestBody = request.body;
 
         // Check for errors
-        if(!requestBody.cards || requestBody.cards.length == 0) {
-            return false;
+        if(!requestBody.cards) {
+            return false; // todo 400 or something
         }
 
         var deck = {
@@ -26,7 +28,6 @@ exports.saveDeck = function(db) {
         _.each(requestBody.cards, function(card) {
             deck.cards.push(_.pick(card, ['name', 'quantity']));
         });
-        console.log(deck);
 
         db.get('decks').insert(deck, function(error, doc) {
             if(error) {
@@ -35,6 +36,30 @@ exports.saveDeck = function(db) {
             else {
                 response.json(deck);
             }
+        });
+    };
+};
+
+exports.updateDeck = function(db) {
+    return function(request, response) {
+
+        var requestBody = request.body;
+
+        // Check for errors
+        if(!requestBody.cards) {
+            return false; // todo 400 or something
+        }
+
+        var cards = [];
+        _.each(requestBody.cards, function(card) {
+            cards.push(_.pick(card, ['name', 'quantity']));
+        });
+
+        var deckCollection = db.get('decks');
+        deckCollection.update({ guid: request.params.guid }, { $set: { cards: cards } }, { multi: false }, function(error, count) {
+            deckCollection.findOne({ guid: request.params.guid }, {}, function(error, deck) {
+                response.json(deck);
+            });
         });
     };
 };
