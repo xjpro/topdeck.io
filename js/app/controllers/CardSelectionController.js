@@ -2,10 +2,11 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.mode = "List";
     $scope.hasChanged = false;
     $scope.allCards = CardLookup.all();
-
     $scope.deck = Deck;
-    $scope.addCard = $scope.deck.addCard;
-    $scope.removeCard = $scope.deck.removeCard;
+    $scope.count = function() {
+        return _(Deck.cards).pluck('quantity').reduce(function(sum, num) { return sum + num; });
+    };
+    $scope.max = 30;
 
     $scope.classFilters = ["Warrior", "Shaman", "Rogue", "Paladin", "Hunter", "Druid", "Warlock", "Mage", "Priest"];
     $scope.classFilter = "Warrior";
@@ -17,6 +18,36 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.cardPagesIndex = 0;
     $scope.cardPagesCount = 0;
     $scope.cardPageSize = 21;
+
+    $scope.findCard = function(name) {
+        return _.find(Deck.cards, function(otherCard) { return otherCard.name == name; });
+    }
+
+    $scope.addCard = function(card) {
+
+        if($scope.count() >= $scope.max) return;
+
+        var existingCard = $scope.findCard(card.name);
+        if(existingCard) {
+            if(existingCard.quantity < 2) {
+                existingCard.quantity++;
+            }
+        } else {
+            card.quantity = 1;
+            Deck.cards.push(card);
+            Deck.cards = _.sortBy(Deck.cards, "cost");
+        }
+    };
+
+    $scope.removeCard = function(card) {
+        var existingCard = $scope.findCard(card.name);
+        if(existingCard) {
+            existingCard.quantity = Math.max(0, existingCard.quantity-1);
+            if(existingCard.quantity == 0) {
+                Deck.cards = _.reject(Deck.cards, function(otherCard) { return otherCard.name == card.name; });
+            }
+        }
+    };
 
     $scope.$watch("classFilter + costFilter", function() {
         var heroCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return card.hero == $scope.classFilter; }), $scope.costFilter))
@@ -44,7 +75,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         $scope.currentPage = $scope.cardPages[$scope.cardPagesIndex];
     });
     $scope.$watch("classFilter", function(newClass) {
-        Deck.filterHeroCards(newClass);
+        Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newClass});
     });
 
     $scope.saveRaw = function() {

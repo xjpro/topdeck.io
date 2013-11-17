@@ -2,24 +2,24 @@
 <html ng-app="deckstats">
 <head>
     <title>Deckstats</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/main.css"/>
-    <script src="js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="js/vendor/lodash.min.js"></script>
-    <script src="js/vendor/jstat.min.js"></script>
-    <script src="js/vendor/snap.svg-min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/angular.js"></script>
-    <script src="js/vendor/angular-resource.min.js"></script>
-    <script src="js/app/all-cards.js"></script>
-    <script src="js/app/deckstats.js"></script>
-    <script src="js/app/deckstats-graphing.js"></script>
-    <script src="js/app/services/CardLookup.js"></script>
-    <script src="js/app/services/Deck.js"></script>
-    <script src="js/app/controllers/HeaderController.js"></script>
-    <script src="js/app/controllers/CardSelectionController.js"></script>
-    <script src="js/app/controllers/ChartController.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="/js/vendor/lodash.min.js"></script>
+    <script src="/js/vendor/jstat.min.js"></script>
+    <script src="/js/vendor/snap.svg-min.js"></script>
+    <script src="/js/vendor/bootstrap.min.js"></script>
+    <script src="/js/vendor/angular.js"></script>
+    <script src="/js/vendor/angular-resource.min.js"></script>
+    <script src="/js/app/all-cards.js"></script>
+    <script src="/js/app/deckstats.js"></script>
+    <script src="/js/app/deckstats-graphing.js"></script>
+    <script src="/js/app/services/CardLookup.js"></script>
+    <script src="/js/app/services/Deck.js"></script>
+    <script src="/js/app/controllers/HeaderController.js"></script>
+    <script src="/js/app/controllers/CardSelectionController.js"></script>
+    <script src="/js/app/controllers/ChartController.js"></script>
 </head>
 <body>
 
@@ -103,7 +103,7 @@
             <textarea class="form-control textarea-fixed card-raw" rows="15" ng-model="rawSelection" ng-show="rawVisible">
             </textarea>
             <div class="pull-left">
-                {{deck.count}} / 30
+                {{count()}} / 30
             </div>
             <div class="pull-right">
                 <button class="btn btn-info btn-sm" ng-class="{active: rawVisible}" ng-click="rawVisible = !rawVisible">Edit</button>
