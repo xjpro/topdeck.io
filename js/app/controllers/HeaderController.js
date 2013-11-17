@@ -12,5 +12,5 @@ app.controller("HeaderController", ["$scope", "Deck", function($scope, Deck) {
     $scope.forkDeck = function() {
         console.log('fork');
     };
-    
+
 }]);

@@ -1,9 +1,11 @@
 
 exports.getDeck = function(db) {
   return function(request, response) {
-      db.get('decks').findOne({ guid: request.params.guid }, {}, function(error, deck) {
+      var guid = request.params.guid;
+      db.get('decks').findOne({ guid: guid }, {}, function(error, deck) {
+          if(error) response.send(error, 500);
           if(!deck) {
-              // 404 error
+              response.send("Deck with guid " + guid + " does not exist", 404);
           }
           response.json(deck);
       });
@@ -17,7 +19,7 @@ exports.saveDeck = function(db) {
 
         // Check for errors
         if(!requestBody.cards) {
-            return false; // todo 400 or something
+            response.send("No request body", 400);
         }
 
         var deck = {
@@ -29,13 +31,9 @@ exports.saveDeck = function(db) {
             deck.cards.push(_.pick(card, ['name', 'quantity']));
         });
 
-        db.get('decks').insert(deck, function(error, doc) {
-            if(error) {
-                response.send(error);
-            }
-            else {
-                response.json(deck);
-            }
+        db.get('decks').insert(deck, function(error, records) {
+            if(error) response.send(error, 500);
+            response.json(deck);
         });
     };
 };
@@ -47,7 +45,7 @@ exports.updateDeck = function(db) {
 
         // Check for errors
         if(!requestBody.cards) {
-            return false; // todo 400 or something
+            response.send("No request body", 400);
         }
 
         var cards = [];
@@ -57,6 +55,8 @@ exports.updateDeck = function(db) {
 
         var deckCollection = db.get('decks');
         deckCollection.update({ guid: request.params.guid }, { $set: { cards: cards } }, { multi: false }, function(error, count) {
+            if(error) response.send(error, 500);
+
             deckCollection.findOne({ guid: request.params.guid }, {}, function(error, deck) {
                 response.json(deck);
             });
