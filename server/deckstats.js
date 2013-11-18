@@ -25,3 +25,5 @@ var app = express()
     .listen(8080);
 
 console.log("Listening on port 8080");
+
+// http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
