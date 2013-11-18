@@ -1,8 +1,19 @@
-app.service("CardLookup", [function() {
-    this.lookup = function(name) {
+app.factory("CardLookup", [function() {
+
+    var CardLookup = {};
+
+    CardLookup.find = function(name) {
         return _.find(hearthstoneCards, function(card) { return card.name == name; });
     };
-    this.all = function() {
+    CardLookup.all = function() {
         return _.sortBy(hearthstoneCards, function(card) { return card.name; });
     };
+    CardLookup.attachData = function(deckCards) {
+        _.each(deckCards, function(card) {
+            var cardData = CardLookup.find(card.name);
+            card.cost = cardData.cost;
+        });
+    };
+
+    return CardLookup;
 }]);

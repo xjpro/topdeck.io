@@ -90,7 +90,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
 
             var quantity = matches[1];
             var name = matches[2];
-            var card = CardLookup.lookup(name);
+            var card = CardLookup.find(name);
 
             if(card) {
                 $scope.cards.push(card);

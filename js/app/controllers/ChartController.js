@@ -1,20 +1,25 @@
-app.controller("ChartController", ["$scope", "Deck", function($scope, Deck) {
+app.controller("ChartController", ["$scope", "Deck", "CardLookup", function($scope, Deck, CardLookup) {
 
     $scope.showDrawChance = true;
     $scope.showLineAttack = true;
     $scope.showLineHealth = true;
     var turns = 10;
     var startingHand = 3;
+    var deckSize = 30;
 
-    $scope.$watch(function() { return Deck.count + $scope.showDrawChance + $scope.showLineAttack + $scope.showLineHealth; }, function() {
+    $scope.$watch(function() { return Deck.cards + $scope.showDrawChance + $scope.showLineAttack + $scope.showLineHealth; }, function() {
+
+        //console.log(Deck.cards);
 
         var minionCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var cardCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         _.each(Deck.cards, function(card) {
-            cardCounts[Math.min(turns, card.cost)] += card.quantity;
-            if(card.type == "Minion") {
-                minionCounts[Math.min(turns, card.cost)] += card.quantity;
+            var cardData = CardLookup.find(card.name);
+            console.log(cardData);
+            cardCounts[Math.min(turns, cardData.cost)] += card.quantity;
+            if(cardData.type == "Minion") {
+                minionCounts[Math.min(turns, cardData.cost)] += card.quantity;
             }
         });
 
@@ -33,7 +38,7 @@ app.controller("ChartController", ["$scope", "Deck", function($scope, Deck) {
                 //jStat.hypgeom.pdf(0, 60, 4, 7) chance of drawing a 4/60 card on turn one (opening hand being 7 cards)
                 // http://www.kibble.net/magic/magic10.php
                 var cardsDrawn = startingHand + i;
-                var chanceCardNotDrawn = jStat.hypgeom.pdf(0, Deck.size, cardCounts[i], cardsDrawn);
+                var chanceCardNotDrawn = jStat.hypgeom.pdf(0, deckSize, cardCounts[i], cardsDrawn);
                 points.push(Math.round(Math.roundTo(1 - chanceCardNotDrawn, 2) * 100));
             }
             $scope.graphData.cardCounts.turnDrawPercentages = points;
