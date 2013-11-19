@@ -1,5 +1,8 @@
-app.controller("ChartController", ["$scope", "Deck", "CardLookup", function($scope, Deck, CardLookup) {
+app.controller("ChartController", ["$scope", "Deck", function($scope, Deck) {
 
+    $scope.count = function() {
+        return _(Deck.cards).pluck('quantity').reduce(function(sum, num) { return sum + num; }) || 0;
+    };
     $scope.showDrawChance = true;
     $scope.showLineAttack = true;
     $scope.showLineHealth = true;
@@ -7,7 +10,7 @@ app.controller("ChartController", ["$scope", "Deck", "CardLookup", function($sco
     var startingHand = 3;
     var deckSize = 30;
 
-    $scope.$watch(function() { return Deck.cards + $scope.showDrawChance + $scope.showLineAttack + $scope.showLineHealth; }, function() {
+    $scope.$watch(function() { return $scope.count() + $scope.showDrawChance + $scope.showLineAttack + $scope.showLineHealth; }, function() {
 
         //console.log(Deck.cards);
 
