@@ -4,12 +4,11 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.allCards = CardLookup.all();
     $scope.deck = Deck;
     $scope.count = function() {
-        return _(Deck.cards).pluck('quantity').reduce(function(sum, num) { return sum + num; });
+        return _(Deck.cards).pluck('quantity').reduce(function(sum, num) { return sum + num; }) || 0;
     };
     $scope.max = 30;
 
-    $scope.classFilters = ["Warrior", "Shaman", "Rogue", "Paladin", "Hunter", "Druid", "Warlock", "Mage", "Priest"];
-    $scope.classFilter = "Warrior";
+    $scope.heroOptions = ["Warrior", "Shaman", "Rogue", "Paladin", "Hunter", "Druid", "Warlock", "Mage", "Priest"];
     $scope.costFilters = ["All", "0", "1", "2", "3", "4", "5", "6", "7+"];
     $scope.costFilter = "All";
 
@@ -49,8 +48,9 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         }
     };
 
-    $scope.$watch("classFilter + costFilter", function() {
-        var heroCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return card.hero == $scope.classFilter; }), $scope.costFilter))
+    $scope.$watch(function() { return Deck.hero + $scope.costFilter; }, function() {
+
+        var heroCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return card.hero == Deck.hero; }), $scope.costFilter))
             .sortBy(function(card) { return card.cost; }).value();
         var generalCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return !card.hero; }), $scope.costFilter))
             .sortBy(function(card) { return card.cost; }).value();
@@ -74,8 +74,9 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.$watch("cardPagesIndex", function() {
         $scope.currentPage = $scope.cardPages[$scope.cardPagesIndex];
     });
-    $scope.$watch("classFilter", function(newClass) {
-        Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newClass});
+    $scope.$watch("deck.hero", function(newHero) {
+        Deck.hero = newHero;
+        Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newHero});
     });
 
     $scope.saveRaw = function() {

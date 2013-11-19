@@ -75,11 +75,11 @@
 
                 <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-primary active dropdown-toggle" data-toggle="dropdown">
-                        {{classFilter}} <span class="caret"></span>
+                        {{deck.hero}} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-repeat="filter in classFilters">
-                            <a ng-click="$parent.classFilter = filter">{{filter}}</a>
+                        <li ng-repeat="option in heroOptions">
+                            <a ng-click="$parent.deck.hero = option">{{option}}</a>
                         </li>
                     </ul>
                 </div>

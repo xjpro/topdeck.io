@@ -36,11 +36,11 @@ exports.saveDeck = function(db) {
         var requestBody = request.body;
 
         // Check for errors
-        if(!requestBody.cards) {
+        if(!requestBody.hero || !requestBody.cards) {
             response.send("No request body", 400);
         }
 
-        var deck = { cards: [] };
+        var deck = { hero: requestBody.hero, cards: [] };
         _.each(requestBody.cards, function(card) {
             deck.cards.push(_.pick(card, ['name', 'quantity']));
         });
@@ -64,18 +64,19 @@ exports.updateDeck = function(db) {
         if(!request.params.guid) {
             response.send("Deck guid was not provided", 404);
         }
-        if(!requestBody.cards) {
+        if(!requestBody.hero || !requestBody.cards) {
             response.send("No request body", 400);
         }
 
         var id = decodeGuid(request.params.guid);
+        var hero = requestBody.hero;
         var cards = [];
         _.each(requestBody.cards, function(card) {
             cards.push(_.pick(card, ['name', 'quantity']));
         });
 
         var deckCollection = db.get('decks');
-        deckCollection.update({ _id: id }, { $set: { cards: cards } }, { multi: false }, function(error, count) {
+        deckCollection.update({ _id: id }, { $set: { hero: hero, cards: cards } }, { multi: false }, function(error, count) {
             if(error) response.send(error, 500);
             if(count == 0) response.send("Deck with guid " + request.params.guid + " not found", 404);
 

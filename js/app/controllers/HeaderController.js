@@ -1,13 +1,16 @@
 
-app.controller("HeaderController", ["$scope", "$location", "Deck", function($scope, $location, Deck) {
+app.controller("HeaderController", ["$scope", "$location", "Deck", "CardLookup", function($scope, $location, Deck, CardLookup) {
 
     $scope.saveDeck = function() {
         if(Deck.guid) {
-            Deck.$update();
+            Deck.$update(function() {
+                CardLookup.attachData(Deck.cards);
+            });
         }
         else {
             Deck.$save(function() {
                 $location.path('/decks/' + Deck.guid);
+                CardLookup.attachData(Deck.cards);
             });
         }
     };

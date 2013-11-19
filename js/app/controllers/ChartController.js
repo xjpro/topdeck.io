@@ -15,11 +15,9 @@ app.controller("ChartController", ["$scope", "Deck", "CardLookup", function($sco
         var cardCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         _.each(Deck.cards, function(card) {
-            var cardData = CardLookup.find(card.name);
-            console.log(cardData);
-            cardCounts[Math.min(turns, cardData.cost)] += card.quantity;
-            if(cardData.type == "Minion") {
-                minionCounts[Math.min(turns, cardData.cost)] += card.quantity;
+            cardCounts[Math.min(turns, card.cost)] += card.quantity;
+            if(card.type == "Minion") {
+                minionCounts[Math.min(turns, card.cost)] += card.quantity;
             }
         });
 

@@ -11,7 +11,10 @@ app.factory("CardLookup", [function() {
     CardLookup.attachData = function(deckCards) {
         _.each(deckCards, function(card) {
             var cardData = CardLookup.find(card.name);
-            card.cost = cardData.cost;
+
+            if(cardData) {
+                _.assign(card, cardData);
+            }
         });
     };
 

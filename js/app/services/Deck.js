@@ -1,8 +1,9 @@
-app.factory("Deck", ["$resource", "$location", function($resource, $location) {
+app.factory("Deck", ["$resource", "$location", "CardLookup", function($resource, $location, CardLookup) {
 
     var DeckResource = $resource("/api/decks/:guid", {guid: "@guid"}, {
         update: { method: 'PUT' }
     });
+
     var Deck = new DeckResource();
     window.debug_deck = Deck;
 
@@ -10,7 +11,7 @@ app.factory("Deck", ["$resource", "$location", function($resource, $location) {
     var guidMatches = /\/decks\/(.+)/i.exec($location.path());
     if(guidMatches) {
         Deck.$get({ guid: guidMatches[1]}, function() {
-            window.d = Deck;
+            CardLookup.attachData(Deck.cards);
         });
     }
     else {
