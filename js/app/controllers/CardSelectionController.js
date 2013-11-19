@@ -11,6 +11,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.heroOptions = ["Warrior", "Shaman", "Rogue", "Paladin", "Hunter", "Druid", "Warlock", "Mage", "Priest"];
     $scope.costFilters = ["All", "0", "1", "2", "3", "4", "5", "6", "7+"];
     $scope.costFilter = "All";
+    $scope.viewCost = "hero";
 
     $scope.currentPage;
     $scope.cardPages = [];
@@ -73,6 +74,14 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     });
     $scope.$watch("cardPagesIndex", function() {
         $scope.currentPage = $scope.cardPages[$scope.cardPagesIndex];
+
+        var firstCard = _.first($scope.currentPage);
+        if(firstCard.hero == Deck.hero) {
+            $scope.viewCost = 'hero';
+        }
+        else {
+            $scope.viewCost = firstCard.cost >= 7 ? '7+' : firstCard.cost;
+        }
     });
     $scope.$watch("deck.hero", function(newHero) {
         Deck.hero = newHero;

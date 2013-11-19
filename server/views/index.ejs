@@ -4,6 +4,7 @@
     <title>Deckstats</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
     <script src="/js/vendor/jquery-1.10.2.min.js"></script>
     <script src="/js/vendor/lodash.min.js"></script>
@@ -71,11 +72,13 @@
                 <li ng-class="{active: mode == 'Cards'}"><a ng-click="mode = 'Cards'">Cards</a></li>
                 <li ng-class="{active: mode == 'List'}"><a ng-click="mode = 'List'">List</a></li>
             </ul>
-            <div class="pull-right">
+            <div class="btn-group-cost pull-right">
 
                 <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-primary active dropdown-toggle" data-toggle="dropdown">
-                        {{deck.hero}} <span class="caret"></span>
+                    <button type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown"
+                            ng-class="{current: viewCost == 'hero'}">
+                        {{deck.hero}} <i class="fa fa-caret-down"></i>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-repeat="option in heroOptions">
@@ -85,7 +88,10 @@
                 </div>
 
                 <div class="btn-group btn-group-sm">
-                    <button class="btn btn-primary" ng-class="{active: $parent.costFilter == cost}" ng-click="$parent.costFilter = cost" ng-repeat="cost in costFilters">
+                    <button type="button" class="btn btn-primary"
+                            ng-class="{active: $parent.costFilter == cost, current: $parent.viewCost == cost}"
+                            ng-click="$parent.costFilter = cost"
+                            ng-repeat="cost in costFilters">
                         {{cost}}
                     </button>
                 </div>

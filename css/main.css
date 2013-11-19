@@ -20,11 +20,12 @@ a, [ng-click] {
     font-size: 22pt;
 }
 .well {
+    border: solid #999 1px;
     background: #E0DFD9;
 }
 .well .btn-default {
     background: #EAE9E3;
-    color: #333;
+    color: #666;
 }
 
 /* bootstrap augments */
@@ -75,6 +76,11 @@ textarea.card-raw {
 }
 .btn-paging-next {
     right: 15px;
+}
+.btn-group-cost .btn.current {
+    height: 30px;
+    border-bottom: solid #5cb85c 3px;
+    color: #fff;
 }
 
 /* chart styles */
