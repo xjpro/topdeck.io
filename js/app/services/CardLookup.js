@@ -18,5 +18,11 @@ app.factory("CardLookup", [function() {
         });
     };
 
+    _.each(hearthstoneCards, function(card) {
+        if(card.cost > 0 && card.type == "Minion") {
+            card.value = Math.roundTo(( (card.attack || 0) + (card.health || 0) ) / card.cost, 1);
+        }
+    });
+
     return CardLookup;
 }]);

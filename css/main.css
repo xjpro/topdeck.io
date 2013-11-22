@@ -6,10 +6,12 @@
 body {
     padding-top: 70px;
     font-family: 'Open Sans', sans-serif;
-
 }
 a, [ng-click] {
     cursor: pointer;
+}
+.container {
+    width: 100%;
 }
 .navbar-inverse {
     background: #4C4034;
@@ -52,10 +54,35 @@ textarea.card-raw {
 }
 .card-list {
     overflow-y: auto;
+    font-size: 10pt;
 }
-.card-list a {
-    display: inline-block;
-    width: 100%;
+.card-list .card-cost {
+    font-weight: bold;
+    text-align: center;
+}
+.card-list .card-name {
+    border-right: none;
+}
+.card-list th.card-quantity {
+    border-left: none;
+}
+.card-list td.card-quantity {
+    width: 40px;
+    padding: 0;
+    border-left: none;
+    text-align: center;
+}
+.card-list td.card-quantity > div {
+    height: 36px;
+    border: solid #aaa 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    line-height: 36px;
+    background: #efefef;
+    color: #000;
+}
+.card-list .card-attack, .card-list .card-health, .card-list .card-value {
+    text-align: center;
 }
 .list-col3 li {
     display: inline-block;

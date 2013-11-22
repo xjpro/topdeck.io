@@ -15,6 +15,7 @@ app.factory("Deck", ["$resource", "$location", "CardLookup", function($resource,
         });
     }
     else {
+        Deck.hero = "Warrior";
         Deck.cards = [];
     }
 
