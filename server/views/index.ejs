@@ -59,17 +59,24 @@
                 </button>
                 <div ng-switch="mode">
                     <div ng-switch-when="Cards">
-                        Select by card images &mdash; Not implemented yet
+                        <ul class="card-selector-images list-unstyled list-col6">
+                            <li ng-repeat="card in currentPage">
+                                <button class="btn btn-link"
+                                        title="{{card.title}}"
+                                        ng-click="addCard(card)">
+                                    <img src="/img/cards/{{card.name}}.png"/>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                     <div ng-switch-when="List">
-                        <ul class="list-unstyled list-col3">
+                        <ul class="card-list list-unstyled list-col3">
                             <li ng-repeat="card in currentPage">
-                                <button class="btn btn-link" ng-click="addCard(card)">
+                                <button class="btn btn-link"
+                                        title="{{card.title}}"
+                                        ng-click="addCard(card)">
                                     {{card.name}}
                                 </button>
-                                <div class="text-center">
-                                    {{card.attack}}/{{card.health}} {{card.type}} for {{card.cost}}
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -106,8 +113,13 @@
 
         </div>
         <div class="col-md-4">
-            <div class="card-list">
-                <table class="table table-bordered" ng-show="!rawVisible">
+            <div class="selected-card-list">
+
+                <div class="alert alert-info text-center" ng-show="deck.cards.length == 0">
+                    No cards have been added
+                </div>
+
+                <table class="table table-bordered" ng-show="!rawVisible && deck.cards.length > 0">
                     <thead>
                         <tr>
                             <th class="card-cost"></th>
@@ -135,7 +147,7 @@
                                 {{card.attack}}
                             </td>
                             <td class="card-health">
-                                {{card.health}}
+                                {{card.health || card.durability}}
                             </td>
                             <td class="card-value">
                                 {{card.value || ''}}

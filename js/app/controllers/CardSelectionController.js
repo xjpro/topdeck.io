@@ -1,5 +1,5 @@
 app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLookup", function($scope, $filter, Deck, CardLookup) {
-    $scope.mode = "List";
+    $scope.mode = "Cards";
     $scope.hasChanged = false;
     $scope.allCards = CardLookup.all();
     $scope.deck = Deck;
@@ -17,7 +17,6 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.cardPages = [];
     $scope.cardPagesIndex = 0;
     $scope.cardPagesCount = 0;
-    $scope.cardPageSize = 21;
 
     $scope.findCard = function(name) {
         return _.find(Deck.cards, function(otherCard) { return otherCard.name == name; });
@@ -49,7 +48,11 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         }
     };
 
-    $scope.$watch(function() { return Deck.hero + $scope.costFilter; }, function() {
+    $scope.$watch("mode", function(newMode) {
+        $scope.cardPageSize = newMode == "Cards" ? 12 : 24;
+    });
+
+    $scope.$watch(function() { return $scope.mode + $scope.costFilter + Deck.hero; }, function() {
 
         var heroCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return card.hero == Deck.hero; }), $scope.costFilter))
             .sortBy(function(card) { return card.cost; }).value();

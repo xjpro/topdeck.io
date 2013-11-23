@@ -43,8 +43,13 @@ a, [ng-click] {
 }
 
 /* card selection styles */
+
+.card-selector-images button img {
+    height: 135px;
+}
+
 .card-selector,
-.card-list,
+.selected-card-list,
 textarea.card-raw {
     height: 325px;
     margin-bottom: 2px;
@@ -52,27 +57,27 @@ textarea.card-raw {
 .card-selector {
     overflow: hidden;
 }
-.card-list {
+.selected-card-list {
     overflow-y: auto;
     font-size: 10pt;
 }
-.card-list .card-cost {
+.selected-card-list .card-cost {
     font-weight: bold;
     text-align: center;
 }
-.card-list .card-name {
+.selected-card-list .card-name {
     border-right: none;
 }
-.card-list th.card-quantity {
+.selected-card-list th.card-quantity {
     border-left: none;
 }
-.card-list td.card-quantity {
+.selected-card-list td.card-quantity {
     width: 40px;
     padding: 0;
     border-left: none;
     text-align: center;
 }
-.card-list td.card-quantity > div {
+.selected-card-list td.card-quantity > div {
     height: 36px;
     border: solid #aaa 1px;
     border-top-left-radius: 5px;
@@ -81,13 +86,20 @@ textarea.card-raw {
     background: #efefef;
     color: #000;
 }
-.card-list .card-attack, .card-list .card-health, .card-list .card-value {
+.selected-card-list .card-attack,
+.selected-card-list .card-health,
+.selected-card-list .card-value {
     text-align: center;
 }
 .list-col3 li {
     display: inline-block;
     width: 33.3%;
 }
+.list-col6 li {
+    display: inline-block;
+    width: 16.6%;
+}
+.list-col3 li button,
 .list-col3 li button {
     width: 100%;
 }

@@ -21,7 +21,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Rogue",
         "quality": 3,
@@ -95,7 +95,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -151,7 +151,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Hunter",
@@ -219,7 +219,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -233,7 +233,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "hero": "Warrior",
         "collectible": 1,
@@ -259,7 +259,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 0,
@@ -272,7 +272,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 1,
@@ -285,7 +285,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 0,
@@ -312,7 +312,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 0,
@@ -340,7 +340,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "hero": "Paladin",
         "faction": 3,
@@ -366,7 +366,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 0,
@@ -393,7 +393,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -422,7 +422,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 0,
@@ -463,7 +463,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 3,
@@ -476,7 +476,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 4,
@@ -503,7 +503,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -544,7 +544,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 3,
@@ -587,7 +587,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Warrior",
         "quality": 4,
@@ -602,7 +602,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 4,
@@ -628,7 +628,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -642,7 +642,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Rogue",
@@ -656,7 +656,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 4,
         "hero": "Priest",
         "name": "Mass Dispel",
@@ -680,7 +680,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 3,
@@ -694,7 +694,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Paladin",
@@ -720,7 +720,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "collectible": 1,
         "hero": "Hunter",
@@ -759,7 +759,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 5,
         "hero": "Druid",
         "collectible": 1,
@@ -770,7 +770,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -783,7 +783,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -827,7 +827,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 3,
@@ -840,7 +840,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Hunter",
         "quality": 0,
@@ -868,7 +868,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 1,
@@ -881,7 +881,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 0,
@@ -894,7 +894,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -937,7 +937,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 0,
@@ -965,7 +965,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "quality": 1,
         "cost": 0,
         "faction": 3,
@@ -978,7 +978,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 3,
@@ -1005,7 +1005,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -1047,7 +1047,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 3,
@@ -1062,7 +1062,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "hero": "Hunter",
         "name": "Unleash the Hounds",
@@ -1073,7 +1073,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 0,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Rogue",
@@ -1099,7 +1099,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -1126,7 +1126,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -1155,7 +1155,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 5,
         "hero": "Paladin",
         "name": "Blessed Champion",
@@ -1197,7 +1197,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "hero": "Paladin",
         "name": "Blessing of Wisdom",
@@ -1250,7 +1250,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -1278,7 +1278,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Hunter",
         "quality": 0,
@@ -1319,7 +1319,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 0,
@@ -1332,7 +1332,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -1359,7 +1359,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 1,
@@ -1373,7 +1373,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "faction": 3,
         "hero": "Warrior",
@@ -1453,7 +1453,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 4,
@@ -1496,7 +1496,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -1509,7 +1509,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -1551,7 +1551,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 4,
@@ -1564,7 +1564,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 4,
@@ -1578,7 +1578,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 6,
         "hero": "Rogue",
         "collectible": 1,
@@ -1604,7 +1604,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Paladin",
         "quality": 1,
@@ -1677,7 +1677,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "faction": 3,
         "hero": "Druid",
@@ -1718,7 +1718,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "faction": 3,
         "hero": "Paladin",
@@ -1819,7 +1819,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Warrior",
         "quality": 0,
@@ -1833,7 +1833,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 0,
@@ -1980,7 +1980,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -1993,7 +1993,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 0,
@@ -2034,7 +2034,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 0,
@@ -2047,7 +2047,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 0,
@@ -2060,7 +2060,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 3,
@@ -2087,7 +2087,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 4,
@@ -2145,7 +2145,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 6,
         "faction": 3,
         "hero": "Druid",
@@ -2186,7 +2186,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -2245,7 +2245,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 1,
@@ -2347,7 +2347,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 6,
         "hero": "Priest",
         "name": "Holy Fire",
@@ -2428,7 +2428,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 0,
@@ -2441,7 +2441,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -2454,7 +2454,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -2525,7 +2525,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -2552,7 +2552,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 0,
@@ -2566,7 +2566,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 5,
         "hero": "Paladin",
         "faction": 3,
@@ -2607,7 +2607,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -2663,7 +2663,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Warlock",
@@ -2675,7 +2675,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 1,
@@ -2704,7 +2704,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -2789,7 +2789,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Hunter",
@@ -2829,7 +2829,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 0,
@@ -2842,7 +2842,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 1,
@@ -2900,7 +2900,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "faction": 3,
         "hero": "Hunter",
@@ -2912,7 +2912,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 0,
@@ -2940,7 +2940,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -2953,7 +2953,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 1,
@@ -2966,7 +2966,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 4,
@@ -2994,7 +2994,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 3,
@@ -3008,7 +3008,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "faction": 3,
         "hero": "Hunter",
@@ -3078,7 +3078,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 0,
@@ -3091,7 +3091,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 0,
@@ -3119,7 +3119,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 0,
         "hero": "Warlock",
         "collectible": 1,
@@ -3130,7 +3130,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 4,
@@ -3186,7 +3186,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Rogue",
@@ -3231,7 +3231,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Hunter",
@@ -3272,7 +3272,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -3299,7 +3299,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -3341,7 +3341,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -3399,7 +3399,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 0,
         "hero": "Priest",
         "name": "Circle of Healing",
@@ -3410,7 +3410,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Hunter",
@@ -3437,7 +3437,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 3,
@@ -3450,7 +3450,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 4,
@@ -3463,7 +3463,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 0,
@@ -3523,7 +3523,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 7,
+        "type": "Weapon",
         "cost": 3,
         "attack": 3,
         "durability": 2,
@@ -3552,7 +3552,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "faction": 3,
         "hero": "Hunter",
@@ -3580,7 +3580,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 0,
@@ -3622,7 +3622,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "hero": "Priest",
         "name": "Shadowform",
@@ -3632,7 +3632,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -3645,7 +3645,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -3658,7 +3658,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 3,
@@ -3713,7 +3713,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 0,
         "faction": 3,
         "hero": "Warrior",
@@ -3725,7 +3725,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 0,
@@ -3739,7 +3739,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 7,
+        "type": "Weapon",
         "cost": 5,
         "attack": 2,
         "durability": 8,
@@ -3753,7 +3753,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Hunter",
         "quality": 0,
@@ -3766,7 +3766,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 0,
@@ -3821,7 +3821,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 0,
@@ -3881,7 +3881,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "faction": 3,
         "hero": "Hunter",
@@ -3893,7 +3893,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 0,
@@ -3907,7 +3907,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 5,
         "faction": 3,
         "hero": "Hunter",
@@ -3920,7 +3920,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 6,
         "hero": "Paladin",
         "faction": 3,
@@ -4007,7 +4007,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "faction": 3,
         "hero": "Hunter",
@@ -4034,7 +4034,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 4,
         "faction": 3,
         "hero": "Druid",
@@ -4107,7 +4107,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Hunter",
         "quality": 1,
@@ -4177,7 +4177,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 3,
@@ -4204,7 +4204,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 0,
@@ -4246,7 +4246,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -4259,7 +4259,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 0,
@@ -4319,7 +4319,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 8,
         "hero": "Mage",
         "faction": 3,
@@ -4346,7 +4346,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "faction": 3,
         "hero": "Mage",
@@ -4372,7 +4372,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Rogue",
         "quality": 0,
@@ -4385,7 +4385,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warlock",
         "quality": 1,
@@ -4398,7 +4398,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 0,
@@ -4413,7 +4413,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 0,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "hero": "Priest",
         "name": "Shadow Word: Pain",
@@ -4424,7 +4424,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "faction": 3,
         "hero": "Paladin",
@@ -4452,7 +4452,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -4465,7 +4465,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -4506,7 +4506,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -4520,7 +4520,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 0,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "hero": "Paladin",
         "faction": 3,
@@ -4533,7 +4533,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 3,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "faction": 3,
         "hero": "Mage",
@@ -4563,7 +4563,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "hero": "Priest",
         "name": "Divine Spirit",
@@ -4634,7 +4634,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 0,
@@ -4675,7 +4675,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 1,
@@ -4701,7 +4701,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -4714,7 +4714,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Paladin",
         "quality": 0,
@@ -4728,7 +4728,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 3,
@@ -4795,7 +4795,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -4810,7 +4810,7 @@ var hearthstoneCards = [
         "set": 2,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 3,
         "hero": "Priest",
         "name": "Shadow Word: Death",
@@ -4836,7 +4836,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 2,
         "hero": "Rogue",
         "faction": 3,
@@ -4849,7 +4849,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 1,
         
-        "type": 5,
+        "type": "Spell",
         "cost": 1,
         "hero": "Paladin",
         "faction": 3,
@@ -4875,7 +4875,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -4889,7 +4889,7 @@ var hearthstoneCards = [
         "set": 3,
         "quality": 4,
         
-        "type": 7,
+        "type": "Weapon",
         "cost": 3,
         "attack": 1,
         "durability": 5,
@@ -4903,7 +4903,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Warrior",
         "quality": 1,
@@ -4948,7 +4948,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Priest",
         "quality": 1,
@@ -4977,7 +4977,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Mage",
         "quality": 1,
@@ -5003,7 +5003,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Shaman",
         "quality": 1,
@@ -5046,7 +5046,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 1,
@@ -5059,7 +5059,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Druid",
         "quality": 0,
@@ -5101,7 +5101,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 3,
@@ -5157,7 +5157,7 @@ var hearthstoneCards = [
         
         "set": 2,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Paladin",
         "quality": 0,
@@ -5170,7 +5170,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 5,
+        "type": "Spell",
         "faction": 3,
         "hero": "Shaman",
         "quality": 3,
@@ -5269,7 +5269,7 @@ var hearthstoneCards = [
         
         "set": 3,
         
-        "type": 7,
+        "type": "Weapon",
         "faction": 3,
         "hero": "Hunter",
         "quality": 4,
