@@ -93,6 +93,12 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                     setup();
                     return update(graphData);
                 }
+                if(maxCardValue < steps - 5) {
+                    // todo below causes infinite loop, but something should be done to downscale the graph
+                    //steps -= 5;
+                    //setup();
+                    //return update(graphData);
+                }
 
                 storedData = graphData;
 
@@ -152,13 +158,26 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
             }
             function buildPath(type, yPoints) {
                 // Catmull-Rom curve
-                var pathString = ["M" + paddingLeft + "," + Math.floor(height - paddingBottom) + " R"];
+                var previousWasStraight = true;
+                var pathString = ["M" + paddingLeft + "," + Math.floor(height - paddingBottom) + " "];
                 _.each(yPoints, function(y, index) {
+
                     var point = { x: pathX(index), y: pathY(type, y) };
-                    pathString.push(point.x + "," + point.y + " ");
+
+                    if(y == 0 && (index == 0 || yPoints[index-1] == 0)) { // straight line
+                        var point = { x: pathX(index), y: pathY(type, y) };
+                        pathString.push("L" + point.x + "," + point.y + " ");
+                        previousWasStraight = true;
+                    }
+                    else {
+                        if(previousWasStraight) {
+                            pathString.push("R");
+                            previousWasStraight = false;
+                        }
+                        pathString.push(point.x + "," + point.y + " ");
+                    }
                 });
                 pathString.push(width + "," + Math.floor(height - paddingBottom));
-                // todo some kind of bug here when exceeding 25 cards, line too steep?
                 return pathString.join('');
             }
 

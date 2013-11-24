@@ -23,6 +23,8 @@ app.factory("CardLookup", [function() {
             card.value = Math.roundTo(( (card.attack || 0) + (card.health || 0) ) / card.cost, 1);
         }
 
+        card.imageName = card.name.replace(":", "").replace(".", "");
+
         switch(card.type) {
             case "Minion":
                 card.title = card.attack + "/" + card.health + " minion for " + card.cost;

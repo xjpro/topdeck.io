@@ -1,6 +1,5 @@
 app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLookup", function($scope, $filter, Deck, CardLookup) {
     $scope.mode = "Cards";
-    $scope.hasChanged = false;
     $scope.allCards = CardLookup.all();
     $scope.deck = Deck;
     $scope.count = function() {
@@ -28,7 +27,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
 
         var existingCard = $scope.findCard(card.name);
         if(existingCard) {
-            if(existingCard.quantity < 2) {
+            if(existingCard.quality != 5 && existingCard.quantity < 2) {
                 existingCard.quantity++;
             }
         } else {
@@ -91,28 +90,30 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newHero});
     });
 
-    $scope.saveRaw = function() {
+    $scope.$watch("rawVisible", function (value, oldValue) {
+        if(angular.equals(value, oldValue) || value) return;
         if(!$scope.rawSelection) return;
 
-        $scope.cards = []; // empty current
+        Deck.cards = []; // empty current
 
         var cardItems = $scope.rawSelection.split('\n');
         _.each(cardItems, function(item) {
             var matches = /^\s*(\d{1})[a-zA-Z]?\s(.+)/.exec(item);
             if(!matches) return true;
 
-            var quantity = matches[1];
+            var quantity = parseInt(matches[1]);
             var name = matches[2];
             var card = CardLookup.find(name);
 
+            if(quantity <= 0) return true; // none to add
+            if(card.quality == 5) quantity = 1; // limit legendary
+
             if(card) {
-                $scope.cards.push(card);
+                card.quantity = Math.min(2, quantity);
+                Deck.cards.push(card);
             }
         });
-
-        // and sort
-        $scope.hasChanged = false;
-    };
+    });
 
     $scope.$watch(function() { return $scope.deck.cards; }, function(currentCards) {
         $scope.rawSelection = "";

@@ -64,7 +64,7 @@
                                 <button class="btn btn-link"
                                         title="{{card.title}}"
                                         ng-click="addCard(card)">
-                                    <img src="/img/cards/{{card.name}}.png"/>
+                                    <img src="/img/cards/{{card.imageName}}.png"/>
                                 </button>
                             </li>
                         </ul>
@@ -113,13 +113,13 @@
 
         </div>
         <div class="col-md-4">
-            <div class="selected-card-list">
+            <div class="selected-card-list" ng-show="!rawVisible">
 
                 <div class="alert alert-info text-center" ng-show="deck.cards.length == 0">
                     No cards have been added
                 </div>
 
-                <table class="table table-bordered" ng-show="!rawVisible && deck.cards.length > 0">
+                <table class="table table-bordered" ng-show="deck.cards.length > 0">
                     <thead>
                         <tr>
                             <th class="card-cost"></th>
@@ -139,7 +139,10 @@
                                 <a ng-click="removeCard(card)">{{card.name}}</a>
                             </td>
                             <td class="card-quantity">
-                                <div ng-show="card.quantity > 1">
+                                <div ng-show="card.quality == 5">
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <div ng-show="card.quality != 5 && card.quantity > 1">
                                     x{{card.quantity}}
                                 </div>
                             </td>
