@@ -49,7 +49,6 @@ a, [ng-click] {
 }
 
 .card-selector,
-.selected-card-list,
 textarea.card-raw {
     height: 325px;
     margin-bottom: 2px;
@@ -57,7 +56,13 @@ textarea.card-raw {
 .card-selector {
     overflow: hidden;
 }
+textarea.card-raw {
+    height: 700px;
+    margin-bottom: 2px;
+}
 .selected-card-list {
+    height: 700px;
+    margin-bottom: 2px;
     overflow-y: auto;
     font-size: 10pt;
 }
@@ -78,13 +83,16 @@ textarea.card-raw {
     text-align: center;
 }
 .selected-card-list td.card-quantity > div {
-    height: 36px;
+    height: 28px;
     border: solid #aaa 1px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    line-height: 36px;
+    line-height: 26px;
     background: #efefef;
     color: #000;
+}
+.selected-card-list td.card-quantity i {
+    color: #428bca ;
 }
 .selected-card-list .card-attack,
 .selected-card-list .card-health,

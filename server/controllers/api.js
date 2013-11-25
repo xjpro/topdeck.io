@@ -22,9 +22,12 @@ exports.getDeck = function(db) {
       db.get('decks').findOne({ _id: id }, {}, function(error, deck) {
           if(error) response.send(error, 500);
           if(!deck) {
-              response.send("Deck with guid " + guid + " not found", 404);
+              response.send("Deck with guid " + request.params.guid + " not found", 404);
           }
+
           deck.guid = request.params.guid;
+          deck.editable = request.query.sessionId && request.query.sessionId == deck.sessionId;
+          deck.sessionId = null; // hide
           response.json(deck);
       });
   };
@@ -39,13 +42,20 @@ exports.saveDeck = function(db) {
         if(!requestBody.hero || !requestBody.cards) {
             response.send("No request body", 400);
         }
+        if(!requestBody.sessionId) {
+            response.send("No sessionId provided", 400);
+        }
 
-        var deck = { hero: requestBody.hero, cards: [] };
+        var deck = {
+            hero: requestBody.hero,
+            cards: [],
+            sessionId: requestBody.sessionId
+        };
         _.each(requestBody.cards, function(card) {
             deck.cards.push(_.pick(card, ['name', 'quantity']));
         });
 
-        db.get('decks').insert(deck, function(error, record) {
+        db.get("decks").insert(deck, function(error, record) {
             if(error) response.send(error, 500);
 
             deck.guid = createGuid(record._id.toString());
@@ -67,20 +77,26 @@ exports.updateDeck = function(db) {
         if(!requestBody.hero || !requestBody.cards) {
             response.send("No request body", 400);
         }
+        if(!requestBody.sessionId) {
+            response.send("No session id was provided", 400);
+        }
 
         var id = decodeGuid(request.params.guid);
         var hero = requestBody.hero;
+        var sessionId = requestBody.sessionId;
         var cards = [];
         _.each(requestBody.cards, function(card) {
             cards.push(_.pick(card, ['name', 'quantity']));
         });
 
         var deckCollection = db.get('decks');
-        deckCollection.update({ _id: id }, { $set: { hero: hero, cards: cards } }, { multi: false }, function(error, count) {
+        deckCollection.update({_id: id, sessionId: sessionId}, { $set: { hero: hero, cards: cards } }, { multi: false }, function(error, count) {
             if(error) response.send(error, 500);
             if(count == 0) response.send("Deck with guid " + request.params.guid + " not found", 404);
 
             deckCollection.findOne({ _id: id }, {}, function(error, deck) {
+                deck.guid = request.params.guid;
+                deck.editable = true; // assumption, they should not have been allowed to update otherwise
                 response.json(deck);
             });
         });
