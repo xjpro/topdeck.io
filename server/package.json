@@ -1,6 +1,6 @@
 {
-  "name": "Deckstats",
-  "description": "Sports management app",
+  "name": "topdeck.io",
+  "description": "Hearthstone deck builder",
   "author": "Joshua Prodahl <jprodahl@gmail.com>",
   "version": "0.0.1",
   "dependencies": {

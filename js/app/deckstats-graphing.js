@@ -177,7 +177,13 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                         pathString.push(point.x + "," + point.y + " ");
                     }
                 });
-                pathString.push(width + "," + Math.floor(height - paddingBottom));
+
+                if(_.last(yPoints) == 0) {
+                    pathString.push("L" + width + "," + Math.floor(height - paddingBottom));
+                }
+                else {
+                    pathString.push(width + "," + Math.floor(height - paddingBottom));
+                }
                 return pathString.join('');
             }
 
