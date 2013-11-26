@@ -29,10 +29,12 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         if(existingCard) {
             if(existingCard.quality != 5 && existingCard.quantity < 2) {
                 existingCard.quantity++;
+                Deck.changes = true;
             }
         } else {
             card.quantity = 1;
             Deck.cards.push(card);
+            Deck.changes = true;
             Deck.cards = _.sortBy(Deck.cards, "cost");
         }
     };
@@ -112,6 +114,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
                 card.quantity = Math.min(2, quantity);
                 Deck.cards.push(card);
             }
+            Deck.changes = true;
         });
     });
 

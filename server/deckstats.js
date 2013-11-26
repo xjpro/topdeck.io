@@ -22,6 +22,7 @@ var app = express()
     .get("/api/decks/:guid", apiController.getDeck(db))
     .post("/api/decks", apiController.saveDeck(db))
     .put("/api/decks/:guid", apiController.updateDeck(db))
+    .post("/api/decks/:guid", apiController.saveDeck(db))
     .listen(8080);
 
 console.log("Listening on port 8080");

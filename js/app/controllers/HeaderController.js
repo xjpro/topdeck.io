@@ -1,6 +1,15 @@
 
 app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "CardLookup", function($scope, $location, Deck, User, CardLookup) {
 
+    $scope.deck = Deck;
+
+    $scope.newDeck = function() {
+        $location.path("/");
+        Deck.guid = null;
+        Deck.cards = [];
+        Deck.sessionId = User.sessionId;
+        Deck.editable = true;
+    };
     $scope.saveDeck = function() {
         if(Deck.guid) {
             Deck.$update(function() {
@@ -10,14 +19,20 @@ app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "Card
         }
         else {
             Deck.$save(function() {
-                $location.path('/decks/' + Deck.guid);
+                $location.path("/decks/" + Deck.guid);
                 CardLookup.attachData(Deck.cards);
                 Deck.sessionId = User.sessionId;
             });
         }
     };
     $scope.forkDeck = function() {
-        console.log('fork');
+        if(!Deck.guid) return;
+        
+        Deck.$save(function() {
+            $location.path("/decks/" + Deck.guid);
+            CardLookup.attachData(Deck.cards);
+            Deck.sessionId = User.sessionId;
+        })
     };
 
 }]);

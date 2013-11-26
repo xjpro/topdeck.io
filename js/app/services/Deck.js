@@ -19,6 +19,7 @@ app.factory("Deck", ["$resource", "$location", "User", "CardLookup", function($r
         Deck.hero = "Warrior";
         Deck.cards = [];
         Deck.sessionId = User.sessionId;
+        Deck.editable = true;
     }
 
     return Deck;

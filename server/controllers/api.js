@@ -27,7 +27,7 @@ exports.getDeck = function(db) {
 
           deck.guid = request.params.guid;
           deck.editable = request.query.sessionId && request.query.sessionId == deck.sessionId;
-          deck.sessionId = null; // hide
+          deck.sessionId = null; // not public
           response.json(deck);
       });
   };
@@ -46,6 +46,10 @@ exports.saveDeck = function(db) {
             response.send("No sessionId provided", 400);
         }
 
+        if(request.params.guid) {
+            console.log("copying " + request.params.guid);
+        }
+
         var deck = {
             hero: requestBody.hero,
             cards: [],
@@ -59,6 +63,7 @@ exports.saveDeck = function(db) {
             if(error) response.send(error, 500);
 
             deck.guid = createGuid(record._id.toString());
+            deck.editable = true; // assumption, they should not have been allowed to create otherwise
 
             response.json(deck);
         });

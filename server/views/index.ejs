@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="deckstats">
 <head>
-    <title>Deckstats</title>
+    <title>Hearthstone Deck Builder — Topdeck.io</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
@@ -34,15 +34,21 @@
                     topdeck.io <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a><i class="fa fa-file-text"></i> New</a></li>
+                    <li><a ng-click="newDeck()"><i class="fa fa-file-text"></i> New</a></li>
                     <li><a ng-click="saveDeck()"><i class="fa fa-save"></i> Save</a></li>
-                    <li><a><i class="fa fa-code-fork"></i> Fork</a></li>
+                    <li><a ng-click="forkDeck()"><i class="fa fa-code-fork"></i> Fork</a></li>
                 </ul>
             </div>
         </div>
         <div class="navbar-form navbar-right">
-            <button type="button" class="btn btn-success" ng-click="saveDeck()">
+            <button type="button" class="btn btn-default" ng-show="!deck.editable" ng-click="forkDeck()">
+                <i class="fa fa-code-fork"></i> Fork
+            </button>
+            <button type="button" class="btn btn-success" ng-show="deck.editable" ng-click="saveDeck()" ng-disabled="!deck.changes">
                 <i class="fa fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-info" ng-click="newDeck()">
+                <i class="fa fa-file-text"></i> New
             </button>
         </div>
     </div>
