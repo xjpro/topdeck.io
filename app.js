@@ -6,11 +6,11 @@ var monk = require('monk');
 var db = monk('localhost:27017/deckstats');
 
 var express = require("express"),
-    mainController = require("./controllers/main.js")
-    apiController = require('./controllers/api.js');
+    mainController = require("./server/controllers/main.js")
+    apiController = require('./server/controllers/api.js');
 
 var app = express()
-    .set("views", "./views")
+    .set("views", "./server/views")
     .set("view engine", "ejs")
     .use(express.bodyParser())
     .get("/", mainController.index)
