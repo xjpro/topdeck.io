@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
+<%if(process.env.NODE_ENV == "production") {%>
+    <script src="/js/topdeck-vendor.min.js"></script>
+    <script src="/js/topdeck.min.js"></script>
+<%}else {%>
     <script src="/js/vendor/jquery.min.js"></script>
     <script src="/js/vendor/lodash.min.js"></script>
     <script src="/js/vendor/jstat.min.js"></script>
@@ -23,6 +27,7 @@
     <script src="/js/app/controllers/HeaderController.js"></script>
     <script src="/js/app/controllers/CardSelectionController.js"></script>
     <script src="/js/app/controllers/ChartController.js"></script>
+<%}%>
 </head>
 <body>
 
