@@ -102,10 +102,14 @@
             <div class="btn-group-cost pull-right">
 
                 <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-primary dropdown-toggle"
-                            data-toggle="dropdown"
-                            ng-class="{current: viewCost == 'hero'}">
-                        {{deck.hero}} <i class="fa fa-caret-down"></i>
+                    <button type="button" class="btn btn-primary"
+                            ng-class="{current: viewCost == 'hero'}"
+                            ng-click="costFilter = 'All'">
+                        {{deck.hero}}
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i>
+                        <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-repeat="option in heroOptions">
@@ -124,20 +128,33 @@
                 </div>
             </div>
 
-            <hr/>
+            <hr style="clear: both; margin-top: 50px;"/>
 
-            <div>
+            <div ng-controller="ChartController">
+
+                <div class="form-inline pull-right">
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" ng-model="showDrawChance"> Draw chance
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>, going</label>
+                        <select class="form-control input-sm" ng-model="startingHand" ng-options="option.value as option.label for option in startingOptions"></select>
+                    </div>
+                </div>
 
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#graph" data-toggle="tab">Graph</a></li>
+                    <li class="active"><a href="#graph" data-toggle="tab">Statistics</a></li>
                     <!--<li><a href="#test" data-toggle="tab">Test</a></li>-->
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="graph">
 
-                        <div class="row" ng-controller="ChartController">
+                        <div class="row" >
                             <div class="col-md-2">
+                                <!--
                                 <ul class="list-unstyled">
                                     <li class="checkbox">
                                         <label>
@@ -155,6 +172,21 @@
                                         </label>
                                     </li>
                                 </ul>
+                                -->
+                                <dl class="dl-horizontal">
+                                    <dt>Minions:</dt>
+                                    <dd>{{graphData.minions}}</dd>
+                                    <dt>Spells:</dt>
+                                    <dd>{{graphData.spells}}</dd>
+                                    <dt>Weapons:</dt>
+                                    <dd>{{graphData.weapons}}</dd>
+                                    <dt>Battlecries:</dt>
+                                    <dd>{{graphData.battlecries}}</dd>
+                                    <dt>Secrets:</dt>
+                                    <dd>{{graphData.secrets}}</dd>
+                                    <dt>Legendaries:</dt>
+                                    <dd>{{graphData.legendaries}}</dd>
+                                </dl>
                             </div>
                             <div class="col-md-10">
                                 <svg id="card-graph" card-graph="graphData">

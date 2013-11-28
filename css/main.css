@@ -29,6 +29,16 @@ a, [ng-click] {
     background: #EAE9E3;
     color: #666;
 }
+.dl-horizontal dt {
+    width: 120px;
+    text-align: left;
+}
+.dl-horizontal dd {
+    margin-left: 120px;
+}
+.form-inline select.form-control {
+    width: auto;
+}
 
 /* bootstrap augments */
 .navbar .dropdown-menu {
