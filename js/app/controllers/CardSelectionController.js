@@ -100,21 +100,22 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
 
         var cardItems = $scope.rawSelection.split('\n');
         _.each(cardItems, function(item) {
-            var matches = /^\s*(\d{1})[a-zA-Z]?\s(.+)/.exec(item);
+            var matches = /^\s*(\d{1})[a-zA-Z]?[\s|x](.+)/.exec(item);
             if(!matches) return true;
 
             var quantity = parseInt(matches[1]);
             var name = matches[2];
             var card = CardLookup.find(name);
 
-            if(quantity <= 0) return true; // none to add
-            if(card.quality == 5) quantity = 1; // limit legendary
-
             if(card) {
-                card.quantity = Math.min(2, quantity);
-                Deck.cards.push(card);
+                if(card.hero && card.hero != Deck.hero) {
+                    Deck.hero = card.hero;
+                }
+
+                for(var i = 0; i < quantity; i++) {
+                    $scope.addCard(card);
+                }
             }
-            Deck.changes = true;
         });
     });
 

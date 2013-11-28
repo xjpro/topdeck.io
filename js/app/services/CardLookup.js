@@ -3,7 +3,12 @@ app.factory("CardLookup", [function() {
     var CardLookup = {};
 
     CardLookup.find = function(name) {
-        return _.find(hearthstoneCards, function(card) { return card.name == name; });
+
+        var match = _.find(hearthstoneCards, function(card) { return card.name == name; });
+        if(!match) {
+            console.error("Could not find " + name);
+        }
+        return match;
     };
     CardLookup.all = function() {
         return _.sortBy(hearthstoneCards, function(card) { return card.name; });
