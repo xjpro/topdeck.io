@@ -87,13 +87,19 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
             $scope.viewCost = firstCard.cost >= 7 ? '7+' : firstCard.cost;
         }
     });
-    $scope.$watch("deck.hero", function(newHero) {
+    $scope.$watch("deck.hero", function(newHero, oldHero) {
+        if(angular.equals(newHero, oldHero)) return;
         Deck.hero = newHero;
         Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newHero});
+        Deck.changes = true;
+    });
+    $scope.$watch("deck.title", function(value, oldValue) {
+        if(angular.equals(value, oldValue)) return;
+        Deck.changes = true;
     });
 
     $scope.$watch("rawVisible", function (value, oldValue) {
-        if(angular.equals(value, oldValue) || value) return;
+        if(angular.equals(value, oldValue)) return;
         if(!$scope.rawSelection) return;
 
         Deck.cards = []; // empty current

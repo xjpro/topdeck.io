@@ -1,3 +1,3 @@
 cd\
 cd mongodb\bin
-mongod --dbpath ..\..\deckstats\data
+mongod --dbpath ..\..\topdeck.io\data

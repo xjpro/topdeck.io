@@ -7,11 +7,22 @@ else if(process.argv[2] == "-dev") {
     process.env.NODE_ENV = "development";
 }
 
+GLOBAL.createGuid = function(hexId) {
+    return new Buffer(hexId, 'hex').toString('base64')
+        .replace('+', '-')
+        .replace('/', '_');
+}
+GLOBAL.decodeGuid = function (guid) {
+    return new Buffer(guid
+        .replace('-','+')
+        .replace('_','/'), 'base64').toString('hex');
+}
+
 // vendor services
 GLOBAL._ = require("lodash-node"); // lo-dash in node, this is awesome
 var mongo = require("mongodb");
 var monk = require("monk");
-var db = monk("localhost:27017/deckstats");
+var db = monk("localhost:27017/topdeck");
 
 var express = require("express"),
     mainController = require("./server/controllers/main.js")
@@ -21,8 +32,9 @@ var app = express()
     .set("views", "./server/views")
     .set("view engine", "ejs")
     .use(express.bodyParser())
-    .get("/", mainController.index)
-    .get("/decks/:guid", mainController.index)
+    .get("/", mainController.index(db))
+    .get("/decks", mainController.deck)
+    .get("/decks/:guid", mainController.deck)
     .get("/api/decks/:guid", apiController.getDeck(db))
     .post("/api/decks", apiController.saveDeck(db))
     .put("/api/decks/:guid", apiController.updateDeck(db))

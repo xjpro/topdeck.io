@@ -4,7 +4,7 @@ app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "Card
     $scope.deck = Deck;
 
     $scope.newDeck = function() {
-        $location.path("/");
+        $location.path("/decks");
         Deck.guid = null;
         Deck.cards = [];
         Deck.sessionId = User.sessionId;
