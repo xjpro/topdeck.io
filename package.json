@@ -8,6 +8,7 @@
     "ejs": "*",
     "mongodb": "*",
     "monk": "*",
-    "lodash-node": "*"
+    "lodash-node": "*",
+    "webshot": "*"
   }
 }

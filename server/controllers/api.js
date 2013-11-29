@@ -1,4 +1,24 @@
 
+function webshot(deck) {
+    var webshot = require("webshot");
+
+    var options = {
+        windowSize: {
+            width: 800,
+            height: 600
+        },
+        shotSize: {
+            width: 625,
+            height: 43 + ((30 * deck.cards.length) / 3) + 10 + 150 + 30 // todo this is fragile as hell
+        }
+    };
+    webshot("http://127.0.0.1/decks/" + deck.guid + "/image", "img/decks/" + deck.guid + ".png", options, function(error) {
+        if(error) {
+            console.log("Error creating webshot:\n" + error);
+        }
+    });
+}
+
 exports.getDeck = function(db) {
   return function(request, response) {
 
@@ -68,6 +88,7 @@ exports.saveDeck = function(db) {
 
             deck.guid = createGuid(record._id.toString());
             deck.editable = true; // assumption, they should not have been allowed to create otherwise
+            webshot(deck); // create image file
 
             response.json(deck);
         });
@@ -110,6 +131,8 @@ exports.updateDeck = function(db) {
                 deckCollection.findOne({ _id: id }, {}, function(error, deck) {
                     deck.guid = request.params.guid;
                     deck.editable = true; // assumption, they should not have been allowed to update otherwise
+                    webshot(deck); // update image file
+
                     response.json(deck);
                 });
             });

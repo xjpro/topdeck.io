@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="deckstats">
+<% include head.ejs %>
+<body class="mini">
+    <script>
+        window.deckData = <%- JSON.stringify(deck) %>;
+    </script>
+
+    <div ng-controller="CardSelectionController">
+
+        <div class="brand">
+            <h1>{{deck.title}}</h1>
+
+            <div class="pull-right">
+                &mdash; topdeck.io
+            </div>
+        </div>
+
+        <div class="alert alert-info text-center" ng-show="deck.cards.length == 0">
+            No cards have been added
+        </div>
+
+        <ul class="list-unstyled list-col3 selected-card-list">
+            <li ng-repeat="card in deck.cards">
+                <span class="card-cost">
+                    {{card.cost}}
+                </span>
+                <span class="card-name">
+                    <a ng-click="removeCard(card)">{{card.name}}</a>
+                </span>
+                <span class="card-quantity">
+                    <span ng-show="card.quality == 5">
+                        <i class="fa fa-star"></i>
+                    </span>
+                    <span ng-show="card.quality != 5 && card.quantity > 1">
+                        x{{card.quantity}}
+                    </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-controller="ChartController">
+        <svg id="card-graph" card-graph="graphData">
+        </svg>
+    </div>
+</body>
+</html>

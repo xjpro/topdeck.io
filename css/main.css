@@ -53,12 +53,37 @@ a, [ng-click] {
     resize: none;
 }
 
-/* card selection styles */
+/* mini version */
+.mini {
+    width: 625px;
+    padding-top: 0;
+}
+.mini #card-graph {
+    width: 100%;
+    height: 150px;
+    border: dotted #aaa 1px;
+}
+.mini .brand {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    background: #4C4034;
+    color: #aaa;
+    font-family: 'Vollkorn', serif;
+}
+.mini .brand h1 {
+    display: inline-block;
+    width: 50%;
+    margin: 0;
+    color: #fff;
+    font-family: 'Vollkorn', serif;
+    font-size: 15pt;
+}
 
+/* card selection styles */
 .card-selector-images button img {
     height: 135px;
 }
-
 .card-selector,
 textarea.card-raw {
     height: 325px;
@@ -77,23 +102,23 @@ textarea.card-raw {
     overflow-y: auto;
     font-size: 10pt;
 }
-.selected-card-list .card-cost {
+.selected-card-list table .card-cost {
     font-weight: bold;
     text-align: center;
 }
-.selected-card-list .card-name {
+.selected-card-list table .card-name {
     border-right: none;
 }
-.selected-card-list th.card-quantity {
+.selected-card-list table th.card-quantity {
     border-left: none;
 }
-.selected-card-list td.card-quantity {
+.selected-card-list table td.card-quantity {
     width: 40px;
     padding: 0;
     border-left: none;
     text-align: center;
 }
-.selected-card-list td.card-quantity > div {
+.selected-card-list table td.card-quantity > div {
     height: 28px;
     border: solid #aaa 1px;
     border-top-left-radius: 5px;
@@ -102,14 +127,30 @@ textarea.card-raw {
     background: #efefef;
     color: #000;
 }
-.selected-card-list td.card-quantity i {
+.selected-card-list table td.card-quantity i {
     color: #428bca ;
 }
-.selected-card-list .card-attack,
-.selected-card-list .card-health,
-.selected-card-list .card-value {
+.selected-card-list table .card-attack,
+.selected-card-list table .card-health,
+.selected-card-list table .card-value {
     text-align: center;
 }
+
+ul.selected-card-list li {
+    padding: 5px;
+    border: solid #bbb 1px;
+    border-radius: 2px;
+    font-size: 10pt;
+}
+ul.selected-card-list .card-quantity {
+    float: right;
+}
+ul.selected-card-list.list-col3 li {
+    display: inline-block;
+    width: 32.25%;
+    margin: 0 3px 2px 3px;
+}
+
 .list-col3 li {
     display: inline-block;
     width: 33.3%;
