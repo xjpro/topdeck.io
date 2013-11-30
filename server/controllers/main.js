@@ -2,12 +2,11 @@
 exports.index = function(db) {
     return function(request, response) {
 
-        var deckCollection = db.get('decks');
-
-        deckCollection.find({}, {}, function(error, decks) {
+        var deckCollection = db.get("decks");
+        deckCollection.find({}, { limit: 6 }, function(error, decks) {
             response.render("index", {
                 recentDecks: decks
-            })
+            });
         });
     };
 }
