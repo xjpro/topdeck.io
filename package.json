@@ -2,7 +2,7 @@
   "name": "topdeck.io",
   "description": "Hearthstone deck builder",
   "author": "Joshua Prodahl <jprodahl@gmail.com>",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies": {
     "express": "3.x",
     "ejs": "*",

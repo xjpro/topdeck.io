@@ -9,9 +9,9 @@ function webshot(deck) {
         },
         renderDelay: 100
     };
-    webshot("http://127.0.0.1/decks/" + deck.guid + "/image", "img/decks/" + deck.guid + ".png", options, function(error) {
+    webshot("http://localhost/decks/" + deck.guid + "/image", "img/decks/" + deck.guid + ".png", options, function(error) {
         if(error) {
-            console.log("Error creating webshot:\n" + error);
+            console.log("Error creating webshot—\n" + error);
         }
     });
 }

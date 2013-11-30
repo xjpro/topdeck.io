@@ -7,6 +7,7 @@ app.factory("User", [function() {
     if(!User.sessionId) {
         User.sessionId = guid();
         Cookies.set("topdeck_session", User.sessionId, {
+            path: "/",
             secure: false,
             expires: 60 * 60 * 24 * 45 // 45 days
         });

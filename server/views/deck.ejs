@@ -60,7 +60,7 @@
                                 <button class="btn btn-link"
                                         title="{{card.title}}"
                                         ng-click="addCard(card)">
-                                    <img src="/img/cards/{{card.imageName}}.png"/>
+                                    <img ng-src="/img/cards/{{card.imageName}}.png" />
                                 </button>
                             </li>
                         </ul>
@@ -116,6 +116,7 @@
             <div ng-controller="ChartController">
 
                 <div class="form-inline pull-right">
+
                     <div class="form-group">
                         <label>
                             <input type="checkbox" ng-model="showDrawChance"> Draw chance

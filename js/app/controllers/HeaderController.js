@@ -7,8 +7,11 @@ app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "Card
         $location.path("/decks");
         Deck.guid = null;
         Deck.cards = [];
+        Deck.title = "";
         Deck.sessionId = User.sessionId;
         Deck.editable = true;
+        Deck.viewed = 0;
+        Deck.forked = 0;
     };
     $scope.saveDeck = function() {
         if(Deck.guid) {

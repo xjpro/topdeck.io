@@ -19,6 +19,8 @@ app.factory("Deck", ["$resource", "$location", "User", "CardLookup", function($r
             Deck.cards = [];
             Deck.sessionId = User.sessionId;
             Deck.editable = true;
+            Deck.viewed = 0;
+            Deck.forked = 0;
         }
     }
     else {

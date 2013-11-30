@@ -25,8 +25,9 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                 var bar;
 
                 // create mana curve & minion bars
-                _.each(curveBarLabels, function(label, index) {
+                _.forEachRight(curveBarLabels, function(label, index) {
 
+                    console.log(curveBarLabels.length - index);
                     var x = (index * barWidth) + paddingLeft;
                     var y = height;
 
@@ -53,6 +54,39 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                         stroke: "#999",
                         fontSize: 10
                     });
+
+                    // all bar tooltip
+                    var allTooltip = s.text(x + barWidth/2, 50, "").attr({
+                        class: "all-tooltip",
+                        textAnchor: "left",
+                        stroke: "#333",
+                        fontSize: 10,
+                        visibility: "hidden"
+                    });
+                    allBar.mousemove(function(evt) {
+                        allTooltip.attr({ x: evt.layerX, y: evt.layerY, visibility: "visible" });
+                    })
+                    allBar.mouseout(function() {
+                        allTooltip.attr({ visibility: "hidden" });
+                    });
+
+                    // minion bar tooltip
+                    var minionTooltip = s.text(x + barWidth/2, 50, "").attr({
+                        class: "minion-tooltip",
+                        textAnchor: "left",
+                        stroke: "#333",
+                        fontSize: 10,
+                        visibility: "hidden",
+                        zIndex: 15000
+                    });
+                    minionBar.mousemove(function(evt) {
+                        minionTooltip.attr({ x: evt.layerX, y: evt.layerY, visibility: "visible" });
+                    })
+                    minionBar.mouseout(function() {
+                        minionTooltip.attr({ visibility: "hidden" });
+                    });
+
+                    // draw percentage label
                     var drawPercentageLabel = s.text(x + barWidth/2, y, "").attr({
                         class: "label-draw",
                         textAnchor: "middle",
@@ -60,7 +94,7 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                         fontSize: 14
                     });
 
-                    curveBarGroups.push(s.g(allBar, minionBar, label, drawPercentageLabel));
+                    curveBarGroups.push(s.g(allBar, minionBar, label, drawPercentageLabel, allTooltip, minionTooltip));
                 });
 
                 // x-axis
@@ -100,9 +134,13 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                     //return update(graphData);
                 }
 
+                graphData.cardCounts.all = graphData.cardCounts.all.reverse();
+                graphData.cardCounts.minions = graphData.cardCounts.minions.reverse();
+                graphData.cardCounts.turnDrawPercentages = graphData.cardCounts.turnDrawPercentages.reverse();
                 storedData = graphData;
 
-                _.each(graphData.cardCounts.all, function(cardCount, index) {
+                _.forEachRight(graphData.cardCounts.all, function(cardCount, index) {
+
                     var minionCount = graphData.cardCounts.minions[index];
 
                     var barHeight = cardCount * stepHeight;
@@ -111,6 +149,9 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
 
                     var minionBarHeight = minionCount * stepHeight;
                     barGroup.select(".minion-bar").animate({ y: (height - paddingBottom - minionBarHeight), height: minionBarHeight}, 50);
+
+                    barGroup.select(".all-tooltip").attr({text: cardCount == 1 ? "1 non minion" : cardCount - minionCount + " non minions"});
+                    barGroup.select(".minion-tooltip").attr({text: minionCount == 1 ? "1 minion" : minionCount + " minions"});
 
                     barGroup.select(".label")
                         .attr({text: cardCount || ""})
