@@ -88,13 +88,12 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         }
     });
     $scope.$watch("deck.hero", function(newHero, oldHero) {
-        if(angular.equals(newHero, oldHero)) return;
-        Deck.hero = newHero;
+        if(!oldHero || angular.equals(newHero, oldHero)) return;
         Deck.cards = _.filter(Deck.cards, function(card) { return !card.hero || card.hero == newHero});
         Deck.changes = true;
     });
     $scope.$watch("deck.title", function(value, oldValue) {
-        if(angular.equals(value, oldValue)) return;
+        if(!oldValue || angular.equals(value, oldValue)) return;
         Deck.changes = true;
     });
 

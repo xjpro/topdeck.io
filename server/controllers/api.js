@@ -3,14 +3,11 @@ function webshot(deck) {
     var webshot = require("webshot");
 
     var options = {
-        windowSize: {
-            width: 800,
-            height: 600
-        },
         shotSize: {
             width: 625,
-            height: 43 + ((30 * deck.cards.length) / 3) + 10 + 150 + 30 // todo this is fragile as hell
-        }
+            height: 43 + ((30 * deck.cards.length) / 3) + 10 + 150 + 40 // todo this is fragile as hell
+        },
+        renderDelay: 100
     };
     webshot("http://127.0.0.1/decks/" + deck.guid + "/image", "img/decks/" + deck.guid + ".png", options, function(error) {
         if(error) {
