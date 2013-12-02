@@ -2,6 +2,7 @@
 // set environment based on inputs
 if(!process.argv[2] || process.argv[2] == "-prod") {
     process.env.NODE_ENV = "production";
+    // todo use uglify-js to minify and deploy js files
 }
 else if(process.argv[2] == "-dev") {
     process.env.NODE_ENV = "development";
@@ -24,6 +25,8 @@ var mongo = require("mongodb");
 var monk = require("monk");
 var db = monk("localhost:27017/topdeck");
 
+// setup via http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
+// todo use sails.js?
 var express = require("express"),
     mainController = require("./server/controllers/main.js")
     apiController = require("./server/controllers/api.js");
@@ -43,5 +46,3 @@ var app = express()
     .listen(8080);
 
 console.log("Listening on port 8080 in " + process.env.NODE_ENV + " mode");
-
-// http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/

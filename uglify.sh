@@ -1,21 +1,21 @@
-uglifyjs js/vendor/jquery.min.js ^
-		js/vendor/angular.min.js ^
-		js/vendor/angular-resource.min.js ^
-		js/vendor/lodash.min.js ^
-		js/vendor/bootstrap.min.js ^
-		js/vendor/snap.svg-min.js ^
-		js/vendor/jstat.min.js ^
-		js/vendor/cookies.min.js ^
-		-o js/topdeck-vendor.min.js ^
+uglifyjs /root/topdeck.io/js/vendor/jquery.min.js ^
+		/root/topdeck.io/js/vendor/angular.min.js ^
+		/root/topdeck.io/js/vendor/angular-resource.min.js ^
+		/root/topdeck.io/js/vendor/lodash.min.js ^
+		/root/topdeck.io/js/vendor/bootstrap.min.js ^
+		/root/topdeck.io/js/vendor/snap.svg-min.js ^
+		/root/topdeck.io/js/vendor/jstat.min.js ^
+		/root/topdeck.io/js/vendor/cookies.min.js ^
+		-o /root/topdeck.io/js/topdeck-vendor.min.js ^
 		-m -c
-uglifyjs js/app/all-cards.js ^
-		js/app/deckstats.js ^
-		js/app/deckstats-graphing.js ^
-		js/app/services/CardLookup.js ^
-		js/app/services/Deck.js ^
-		js/app/services/User.js ^
-		js/app/controllers/CardSelectionController.js ^
-		js/app/controllers/ChartController.js ^
-		js/app/controllers/HeaderController.js ^
+uglifyjs /root/topdeck.io/js/app/all-cards.js ^
+		/root/topdeck.io/js/app/deckstats.js ^
+		/root/topdeck.io/js/app/deckstats-graphing.js ^
+		/root/topdeck.io/js/app/services/CardLookup.js ^
+		/root/topdeck.io/js/app/services/Deck.js ^
+		/root/topdeck.io/js/app/services/User.js ^
+		/root/topdeck.io/js/app/controllers/CardSelectionController.js ^
+		/root/topdeck.io/js/app/controllers/ChartController.js ^
+		/root/topdeck.io/js/app/controllers/HeaderController.js ^
 		-o js/topdeck.min.js ^
 		-m -c

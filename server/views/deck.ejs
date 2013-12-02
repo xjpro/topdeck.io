@@ -7,19 +7,23 @@
     <div class="container">
         <div class="navbar-header">
             <div class="dropdown">
-                <a class="navbar-brand" data-toggle="dropdown">topdeck.io</a>
+                <a class="navbar-brand" data-toggle="dropdown">
+                    topdeck.io <i class="fa fa-caret-down"></i>
+                </a>
                 <ul class="dropdown-menu">
                     <li><a ng-click="newDeck()"><i class="fa fa-file-text"></i> New</a></li>
                     <li><a ng-click="saveDeck()"><i class="fa fa-save"></i> Save</a></li>
                     <li><a ng-click="forkDeck()"><i class="fa fa-code-fork"></i> Fork</a></li>
-                    <li class=""></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="forkDeck()"><i class="fa fa-link"></i> Copy URL</a></li>
+                    <li><a ng-click="forkDeck()"><i class="fa fa-picture-o"></i> Copy picture</a></li>
+                    <li class="divider"></li>
                     <li><a href="/" target="_self"><i class="fa fa-home"></i> Back to index</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="navbar-right navbar-form">
-
             <button type="button" class="btn btn-default" ng-show="!deck.editable" ng-click="forkDeck()">
                 <i class="fa fa-code-fork"></i> Fork
             </button>
@@ -31,7 +35,7 @@
             </button>
         </div>
 
-        <div class="navbar-right navbar-form navbar-brand">
+        <div class="navbar-right navbar-form navbar-stats">
             <span title="Copied {{deck.forked}} times">
                 <i class="fa fa-code-fork"></i> {{deck.forked}}
             </span>&nbsp;
@@ -39,6 +43,7 @@
                 <i class="fa fa-eye"></i> {{deck.viewed}}
             </span>
         </div>
+
     </div>
 </header>
 

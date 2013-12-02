@@ -32,7 +32,7 @@ exports.getDeck = function(db) {
               response.send("Deck with guid " + request.params.guid + " not found", 404);
           }
 
-          if(request.query.sessionId != deck.sessionId) {
+          if(!request.query || request.query.sessionId != deck.sessionId) {
               deckCollection.update({ _id: id }, { $inc: { viewed: 1 } }); // increment views
               deck.viewed++; // corrects this always being one lower due to the previous line increment
           }
