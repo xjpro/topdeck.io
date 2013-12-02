@@ -26,13 +26,16 @@ exports.deckImage = function(db) {
         var id = decodeGuid(request.params.guid);
 
         deckCollection.findOne({ _id: id }, {}, function(error, deck) {
-            if(error) response.send(error, 500);
-            if(!deck) {
+            if(error) {
+                response.send(error, 500);
+            }
+            else if(!deck) {
                 response.send("Deck with guid " + request.params.guid + " not found", 404);
             }
-
-            deck.guid = request.params.guid;
-            response.render("deckImage", { deck: deck });
+            else {
+                deck.guid = request.params.guid;
+                response.render("deckImage", { deck: deck });
+            }
         });
     };
 };

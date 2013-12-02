@@ -46,6 +46,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
             if(existingCard.quantity == 0) {
                 Deck.cards = _.reject(Deck.cards, function(otherCard) { return otherCard.name == card.name; });
             }
+            Deck.changes = true;
         }
     };
 
