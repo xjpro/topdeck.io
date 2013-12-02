@@ -1,12 +1,13 @@
 call uglifyjs ^
 		js/vendor/jquery.min.js ^
-		js/vendor/angular.min.js ^
-		js/vendor/angular-resource.min.js ^
 		js/vendor/lodash.min.js ^
-		js/vendor/bootstrap.min.js ^
-		js/vendor/snap.svg-min.js ^
 		js/vendor/jstat.min.js ^
+		js/vendor/snap.svg-min.js ^
 		js/vendor/cookies.min.js ^
+		js/vendor/ZeroClipboard.min.js ^
+		js/vendor/bootstrap.min.js ^
+		js/vendor/angular.js ^
+		js/vendor/angular-resource.min.js ^
 		-o js/topdeck-vendor.min.js ^
 		-m -c
 		

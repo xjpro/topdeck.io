@@ -15,8 +15,16 @@
                     <li><a ng-click="saveDeck()"><i class="fa fa-save"></i> Save</a></li>
                     <li><a ng-click="forkDeck()"><i class="fa fa-code-fork"></i> Fork</a></li>
                     <li class="divider"></li>
-                    <li><a ng-click="forkDeck()"><i class="fa fa-link"></i> Copy URL</a></li>
-                    <li><a ng-click="forkDeck()"><i class="fa fa-picture-o"></i> Copy picture</a></li>
+                    <li>
+                        <a copy-button="topdeck.io/decks/{{deck.guid}}">
+                            <i class="fa fa-link"></i> Copy URL
+                        </a>
+                    </li>
+                    <li>
+                        <a copy-button="topdeck.io/decks/{{deck.guid}}.png">
+                            <i class="fa fa-picture-o"></i> Copy picture
+                        </a>
+                    </li>
                     <li class="divider"></li>
                     <li><a href="/" target="_self"><i class="fa fa-home"></i> Back to index</a></li>
                 </ul>

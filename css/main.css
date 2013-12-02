@@ -62,6 +62,9 @@ a, [ng-click] {
 .textarea-fixed {
     resize: none;
 }
+[copy-button] {
+    cursor: pointer;
+}
 
 /* mini/image version */
 .mini {
