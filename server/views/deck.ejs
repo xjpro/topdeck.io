@@ -17,12 +17,12 @@
                     <li class="divider"></li>
                     <li>
                         <a copy-button="topdeck.io/decks/{{deck.guid}}">
-                            <i class="fa fa-link"></i> Copy URL
+                            <i class="fa fa-link"></i> Copy URL to clipboard
                         </a>
                     </li>
                     <li>
                         <a copy-button="topdeck.io/decks/{{deck.guid}}.png">
-                            <i class="fa fa-picture-o"></i> Copy picture
+                            <i class="fa fa-picture-o"></i> Copy picture to clipboard
                         </a>
                     </li>
                     <li class="divider"></li>
@@ -111,12 +111,16 @@
                 <li ng-class="{active: mode == 'List'}"><a ng-click="mode = 'List'">List</a></li>
             </ul>
 
-
-            <div class="col-xs-4 form-group text-right">
-                <input type="text" class="form-control input-sm" placeholder="Filter cards" ng-model="textFilter" />
+            <div class="col-xs-4 text-right">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" placeholder="Filter cards" ng-model="textFilter" />
+                    <span class="input-group-btn btn-group-sm">
+                        <button type="button" class="btn btn-default" ng-disabled="!textFilter" ng-click="textFilter = null">Clear</button>
+                    </span>
+                </div>
             </div>
 
-            <div class="col-xs-6 btn-group-cost text-right">
+            <div class="col-xs-6 btn-group-cost">
 
                 <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-primary"
