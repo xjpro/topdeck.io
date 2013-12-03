@@ -65,11 +65,18 @@
 
     <div class="row" ng-controller="CardSelectionController">
         <div class="col-md-9">
+
             <div class="well card-selector">
+
+                <div class="alert alert-warning" ng-show="cardPagesCount == 0">
+                    No cards meet the chosen criteria &mdash;
+                    <a class="alert-link" ng-click="textFilter = null">Click here to clear filter</a>
+                </div>
+
                 <button class="btn btn-default btn-paging-prev" ng-hide="cardPagesIndex == 0" ng-click="cardPagesIndex = cardPagesIndex-1">
                     <i class="fa fa-chevron-left"></i>
                 </button>
-                <button class="btn btn-default btn-paging-next" ng-hide="cardPagesIndex == cardPagesCount-1" ng-click="cardPagesIndex = cardPagesIndex+1">
+                <button class="btn btn-default btn-paging-next" ng-hide="cardPagesCount <= 1 || cardPagesIndex == cardPagesCount-1" ng-click="cardPagesIndex = cardPagesIndex+1">
                     <i class="fa fa-chevron-right"></i>
                 </button>
                 <div ng-switch="mode">
@@ -97,11 +104,19 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-pills-sm pull-left">
+
+            <!-- selector options -->
+            <ul class="col-xs-2 nav nav-pills nav-pills-sm">
                 <li ng-class="{active: mode == 'Cards'}"><a ng-click="mode = 'Cards'">Cards</a></li>
                 <li ng-class="{active: mode == 'List'}"><a ng-click="mode = 'List'">List</a></li>
             </ul>
-            <div class="btn-group-cost pull-right">
+
+
+            <div class="col-xs-4 form-group text-right">
+                <input type="text" class="form-control input-sm" placeholder="Filter cards" ng-model="textFilter" />
+            </div>
+
+            <div class="col-xs-6 btn-group-cost text-right">
 
                 <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-primary"
@@ -129,6 +144,7 @@
                     </button>
                 </div>
             </div>
+            <!-- end selector options -->
 
             <hr style="clear: both; margin-top: 50px;"/>
 

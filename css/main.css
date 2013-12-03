@@ -200,6 +200,9 @@ ul.selected-card-list.list-col3 li {
 .btn-paging-next {
     right: 15px;
 }
+.btn-group-cost {
+    padding-right: 0;
+}
 .btn-group-cost .btn.current {
     height: 30px;
     border-bottom: solid #5cb85c 3px;

@@ -10,6 +10,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     $scope.heroOptions = ["Warrior", "Shaman", "Rogue", "Paladin", "Hunter", "Druid", "Warlock", "Mage", "Priest"];
     $scope.costFilters = ["All", "0", "1", "2", "3", "4", "5", "6", "7+"];
     $scope.costFilter = "All";
+    $scope.textFilter = "";
     $scope.viewCost = "hero";
 
     $scope.currentPage;
@@ -54,12 +55,26 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         $scope.cardPageSize = newMode == "Cards" ? 12 : 24;
     });
 
-    $scope.$watch(function() { return $scope.mode + $scope.costFilter + Deck.hero; }, function() {
+    $scope.$watch(function() { return $scope.mode + $scope.costFilter + $scope.textFilter + Deck.hero; }, function() {
 
         var heroCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return card.hero == Deck.hero; }), $scope.costFilter))
             .sortBy(function(card) { return card.cost; }).value();
         var generalCards = _($filter("cost")(_.filter($scope.allCards, function(card) { return !card.hero; }), $scope.costFilter))
             .sortBy(function(card) { return card.cost; }).value();
+
+        // filtering!
+        if($scope.textFilter) {
+            var regex = new RegExp($scope.textFilter, "i");
+            var filter = function(card) {
+                if(card.name && regex.test(card.name)) return true;
+                if(card.description && regex.test(card.descrption)) return true;
+                if($scope.textFilter == "legendary" && card.quality == 5) return true;
+                return false;
+            };
+
+            heroCards = _.filter(heroCards, filter);
+            generalCards = _.filter(generalCards, filter);
+        }
 
         $scope.cardPages = [];
 
@@ -81,6 +96,8 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
         $scope.currentPage = $scope.cardPages[$scope.cardPagesIndex];
 
         var firstCard = _.first($scope.currentPage);
+        if(!firstCard) return;
+
         if(firstCard.hero == Deck.hero) {
             $scope.viewCost = 'hero';
         }
