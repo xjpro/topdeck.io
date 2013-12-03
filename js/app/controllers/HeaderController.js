@@ -1,5 +1,5 @@
 
-app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "CardLookup", function($scope, $location, Deck, User, CardLookup) {
+app.controller("HeaderController", ["$scope", "$location", "$timeout", "Deck", "User", "CardLookup", function($scope, $location, $timeout, Deck, User, CardLookup) {
 
     $scope.deck = Deck;
 
@@ -27,6 +27,7 @@ app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "Card
                 Deck.sessionId = User.sessionId;
             });
         }
+        $scope.notification = "Deck saved successfully";
     };
     $scope.forkDeck = function() {
         if(!Deck.guid) return;
@@ -35,7 +36,20 @@ app.controller("HeaderController", ["$scope", "$location", "Deck", "User", "Card
             $location.path("/decks/" + Deck.guid);
             CardLookup.attachData(Deck.cards);
             Deck.sessionId = User.sessionId;
-        })
+        });
+        $scope.notification = "Deck saved successfully";
     };
+
+    $scope.$watch("notification", function() {
+       $timeout(function() {
+           $scope.notification = null;
+       }, 6000);
+    });
+
+    $scope.$on("toast", function(evt, text) {
+        $scope.$apply(function() {
+            $scope.notification = text;
+        });
+    });
 
 }]);

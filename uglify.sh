@@ -1,11 +1,12 @@
 uglifyjs /root/topdeck.io/js/vendor/jquery.min.js ^
-		/root/topdeck.io/js/vendor/angular.min.js ^
-		/root/topdeck.io/js/vendor/angular-resource.min.js ^
 		/root/topdeck.io/js/vendor/lodash.min.js ^
-		/root/topdeck.io/js/vendor/bootstrap.min.js ^
-		/root/topdeck.io/js/vendor/snap.svg-min.js ^
 		/root/topdeck.io/js/vendor/jstat.min.js ^
+		/root/topdeck.io/js/vendor/snap.svg-min.js ^
 		/root/topdeck.io/js/vendor/cookies.min.js ^
+		/root/topdeck.io/js/vendor/ZeroClipboard.min.js ^
+		/root/topdeck.io/js/vendor/bootstrap.min.js ^
+		/root/topdeck.io/js/vendor/angular.js ^
+		/root/topdeck.io/js/vendor/angular-resource.min.js ^
 		-o /root/topdeck.io/js/topdeck-vendor.min.js ^
 		-m -c
 uglifyjs /root/topdeck.io/js/app/all-cards.js ^

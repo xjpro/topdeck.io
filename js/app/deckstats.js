@@ -23,4 +23,23 @@ window.app = angular.module("deckstats", ["ngResource"])
             $rootScope.windowWidth = $window.outerWidth;
             $rootScope.$apply("windowWidth");
         });
+    }])
+    .directive("copyButton", ["$rootScope", "$timeout", function($rootScope, $timeout) {
+        return function(scope, element, attrs) {
+            $timeout(function() {
+
+                element.attr("data-clipboard-text", attrs.copyButton);
+
+                var client = new ZeroClipboard(element, {
+                    moviePath: "/js/ZeroClipboard.swf"
+                });
+
+                client.on("complete", function(client, args) {
+                    // clicked!
+                    $rootScope.$broadcast("toast", "Link saved to clipboard");
+                    $("body").click(); // close dropdowns
+                });
+
+            }, 750); // can this be improved? need to execute after template finishes
+        }
     }]);
