@@ -3,7 +3,7 @@ exports.index = function(db) {
     return function(request, response) {
 
         var deckCollection = db.get("decks");
-        deckCollection.find({}, { limit: 6 }, function(error, decks) {
+        deckCollection.find({}, { sort: { viewed: -1 }, limit: 6 }, function(error, decks) {
             response.render("index", {
                 recentDecks: decks
             });
