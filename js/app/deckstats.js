@@ -24,7 +24,7 @@ window.app = angular.module("deckstats", ["ngResource"])
             $rootScope.$apply("windowWidth");
         });
     }])
-    .directive("copyButton", ["$timeout", function($timeout) {
+    .directive("copyButton", ["$rootScope", "$timeout", function($rootScope, $timeout) {
         return function(scope, element, attrs) {
             $timeout(function() {
 
@@ -36,6 +36,7 @@ window.app = angular.module("deckstats", ["ngResource"])
 
                 client.on("complete", function(client, args) {
                     // clicked!
+                    $rootScope.$broadcast("toast", "Link saved to clipboard");
                     $("body").click(); // close dropdowns
                 });
 

@@ -25,6 +25,11 @@ a, [ng-click] {
 .navbar-brand i {
     line-height: 0em;
 }
+.navbar-form .alert {
+    padding: 6px 15px;
+    margin-bottom: 0;
+    margin-right: 25px;
+}
 .well {
     border: solid #999 1px;
     background: #E0DFD9;
