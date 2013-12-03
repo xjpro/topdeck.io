@@ -27,7 +27,6 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                 // create mana curve & minion bars
                 _.forEachRight(curveBarLabels, function(label, index) {
 
-                    console.log(curveBarLabels.length - index);
                     var x = (index * barWidth) + paddingLeft;
                     var y = height;
 
