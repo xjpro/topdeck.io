@@ -34,7 +34,7 @@ app.factory("CardLookup", [function() {
             case "Minion":
                 card.title = card.attack + "/" + card.health + " minion for " + card.cost;
                 if(card.description) {
-                    card.title += ". " + card.description;
+                    card.title += ".<br/>" + card.description;
                 }
                 break;
             case "Weapon":

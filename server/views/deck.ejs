@@ -13,7 +13,7 @@
                 <ul class="dropdown-menu">
                     <li><a ng-click="newDeck()"><i class="fa fa-file-text"></i> New</a></li>
                     <li><a ng-click="saveDeck()"><i class="fa fa-save"></i> Save</a></li>
-                    <li><a ng-click="forkDeck()"><i class="fa fa-code-fork"></i> Fork</a></li>
+                    <li><a ng-click="forkDeck()"><i class="fa fa-code-fork"></i> Copy</a></li>
                     <li class="divider"></li>
                     <li>
                         <a copy-button="topdeck.io/decks/{{deck.guid}}">
@@ -33,7 +33,7 @@
 
         <div class="navbar-right navbar-form">
             <button type="button" class="btn btn-default" ng-show="!deck.editable" ng-click="forkDeck()">
-                <i class="fa fa-code-fork"></i> Fork
+                <i class="fa fa-code-fork"></i> Copy
             </button>
             <button type="button" class="btn btn-success" ng-show="deck.editable" ng-click="saveDeck()" ng-disabled="!deck.changes">
                 <i class="fa fa-save"></i> Save
@@ -84,7 +84,7 @@
                         <ul class="card-selector-images list-unstyled list-col6">
                             <li ng-repeat="card in currentPage">
                                 <button class="btn btn-link"
-                                        title="{{card.title}}"
+                                        tooltip="{{card.title}}"
                                         ng-click="addCard(card)">
                                     <img ng-src="/img/cards/{{card.imageName}}.png" />
                                 </button>
@@ -252,14 +252,21 @@
                                 {{card.cost}}
                             </td>
                             <td class="card-name">
-                                <a ng-click="removeCard(card)">{{card.name}}</a>
+                                <a ng-click="removeCard(card)" tooltip="{{card.title}}">{{card.name}}</a>
                             </td>
-                            <td class="card-quantity">
+                            <td class="card-quantity" ng-mouseenter="card.hover = true" ng-mouseleave="card.hover = false">
                                 <div ng-show="card.quality == 5">
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <div ng-show="card.quality != 5 && card.quantity > 1">
-                                    x{{card.quantity}}
+                                <div ng-if="card.quality != 5 && card.quantity == 1" ng-show="card.hover">
+                                    <a ng-click="addCard(card)">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                                <div ng-if="card.quality != 5 && card.quantity > 1">
+                                    <a ng-click="removeCard(card)">
+                                        x{{card.quantity}}
+                                    </a>
                                 </div>
                             </td>
                             <td class="card-attack">

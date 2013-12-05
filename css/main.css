@@ -105,7 +105,7 @@ a, [ng-click] {
 
 /* card selection styles */
 .card-selector-images button img {
-    height: 135px;
+    height: 145px;
 }
 .card-selector,
 textarea.card-raw {
@@ -113,6 +113,7 @@ textarea.card-raw {
     margin-bottom: 2px;
 }
 .card-selector {
+    padding: 12px 20px;
     overflow: hidden;
 }
 textarea.card-raw {
@@ -127,6 +128,10 @@ textarea.card-raw {
 }
 .mini .selected-card-list {
     height: auto;
+}
+.selected-card-list table td a {
+    display: block;
+    width: 100%;
 }
 .selected-card-list table .card-cost {
     font-weight: bold;
@@ -176,6 +181,12 @@ ul.selected-card-list.list-col3 li {
     width: 32.25%;
     margin: 0 3px 2px 3px;
 }
+.card-list li {
+    padding: 5px 0;
+}
+.card-list li button {
+    font-size: 13pt;
+}
 
 .list-col3 li {
     display: inline-block;
@@ -186,7 +197,8 @@ ul.selected-card-list.list-col3 li {
     width: 16.6%;
 }
 .list-col3 li button,
-.list-col3 li button {
+.list-col6 li button {
+    padding: 0;
     width: 100%;
 }
 .list-col3 li img {

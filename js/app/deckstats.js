@@ -22,6 +22,13 @@ window.app = angular.module("deckstats", ["ngResource"])
             $rootScope.$apply("windowWidth");
         });
     }])
+    .directive("tooltip", function() {
+        return function(scope, element, attrs) {
+            element.attr("data-toggle", "tooltip");
+            element.attr("data-original-title", attrs.tooltip);
+            $(element).tooltip({html: true});
+        };
+    })
     .directive("copyButton", ["$rootScope", "$timeout", function($rootScope, $timeout) {
         return function(scope, element, attrs) {
             $timeout(function() {
