@@ -40,10 +40,17 @@ app.controller("HeaderController", ["$scope", "$location", "$timeout", "Deck", "
         $scope.notification = "Deck saved successfully";
     };
 
+
+    var notificationTimeout = null;
     $scope.$watch("notification", function() {
-       $timeout(function() {
+
+        if(notificationTimeout) {
+            $timeout.cancel(notificationTimeout);
+        }
+
+        notificationTimeout = $timeout(function() {
            $scope.notification = null;
-       }, 6000);
+        }, 5000);
     });
 
     $scope.$on("toast", function(evt, text) {

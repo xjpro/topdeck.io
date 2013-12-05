@@ -133,9 +133,6 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
                     //return update(graphData);
                 }
 
-                graphData.cardCounts.all = graphData.cardCounts.all.reverse();
-                graphData.cardCounts.minions = graphData.cardCounts.minions.reverse();
-                graphData.cardCounts.turnDrawPercentages = graphData.cardCounts.turnDrawPercentages.reverse();
                 storedData = graphData;
 
                 _.forEachRight(graphData.cardCounts.all, function(cardCount, index) {
@@ -229,6 +226,13 @@ app.directive("cardGraph", ["$rootScope", function($rootScope) {
 
             scope.$watch("data", function(newData) {
                 if(newData) {
+                    // The data we get is in the expected order of 1, 2, 3, 4... cost (sorted by cost)
+                    // However, in order to make our tooltips show up nicely, the bar needs to be add in reverse
+                    // So, reverse all of the data so we do the bars starting with the larger cost first
+                    newData.cardCounts.all = newData.cardCounts.all.reverse();
+                    newData.cardCounts.minions = newData.cardCounts.minions.reverse();
+                    newData.cardCounts.turnDrawPercentages = newData.cardCounts.turnDrawPercentages.reverse();
+
                     update(newData);
                 }
             });
