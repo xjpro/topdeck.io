@@ -1,34 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="deckstats">
-<head>
-    <title>Hearthstone Deck Builder — Topdeck.io</title>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-<%if(process.env.NODE_ENV == "production") {%>
-    <script src="/js/topdeck-vendor.min.js"></script>
-    <script src="/js/topdeck.min.js"></script>
-<%}else {%>
-    <script src="/js/vendor/jquery.min.js"></script>
-    <script src="/js/vendor/lodash.min.js"></script>
-    <script src="/js/vendor/jstat.min.js"></script>
-    <script src="/js/vendor/snap.svg-min.js"></script>
-    <script src="/js/vendor/cookies.min.js"></script>
-    <script src="/js/vendor/bootstrap.min.js"></script>
-    <script src="/js/vendor/angular.js"></script>
-    <script src="/js/vendor/angular-resource.min.js"></script>
-    <script src="/js/app/all-cards.js"></script>
-    <script src="/js/app/deckstats.js"></script>
-    <script src="/js/app/deckstats-graphing.js"></script>
-    <script src="/js/app/services/CardLookup.js"></script>
-    <script src="/js/app/services/Deck.js"></script>
-    <script src="/js/app/services/User.js"></script>
-    <script src="/js/app/controllers/HeaderController.js"></script>
-    <script src="/js/app/controllers/CardSelectionController.js"></script>
-    <script src="/js/app/controllers/ChartController.js"></script>
-<%}%>
-</head>
+<% include head.ejs %>
 <body>
 
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
