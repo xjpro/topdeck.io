@@ -1,15 +1,39 @@
 
+var async = require("async");
+
 exports.index = function(db) {
     return function(request, response) {
 
+        var viewModel = {};
+
         var deckCollection = db.get("decks");
-        deckCollection.find({}, { sort: { viewed: -1 }, limit: 6 }, function(error, decks) {
-            response.render("index", {
-                recentDecks: decks
-            });
+
+        async.series([
+            function(callback) {
+                var lagTimeMinutesAgo = new Date(new Date().getTime() - 1.5 * 60000); // don't show for 90 seconds to ensure image has been created
+                deckCollection.find({ updated: { $lt: lagTimeMinutesAgo }}, { sort: { updated: -1 }, limit: 6 }, function(error, decks) {
+                    viewModel.mostRecent = decks;
+                    callback();
+                });
+            },
+            function(callback) {
+                deckCollection.find({}, { sort: { viewed: -1 }, limit: 6 }, function(error, decks) {
+                    viewModel.mostViewed = decks;
+                    callback();
+                });
+            },
+            function(callback) {
+                deckCollection.find({}, { sort: { forked: -1 }, limit: 6 }, function(error, decks) {
+                    viewModel.mostCopied = decks;
+                    callback();
+                });
+            }
+        ], function() {
+            response.render("index", viewModel);
         });
+
     };
-}
+};
 
 exports.deck = function(request, response) {
     response.render("deck");

@@ -10,6 +10,7 @@
     "monk": "*",
     "lodash-node": "*",
     "webshot": "*",
+    "async": "*",
     "uglify-js": "*"
   }
 }

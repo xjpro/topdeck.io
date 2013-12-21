@@ -10,9 +10,6 @@ body {
 a, [ng-click] {
     cursor: pointer;
 }
-.container {
-    width: 100%;
-}
 .navbar-inverse {
     background: #4C4034;
     color: #fff;
@@ -239,8 +236,8 @@ ul.selected-card-list.list-col3 li {
 }
 
 /* index */
-.recently-created li .image {
-    max-height: 200px;
+.list-deckcollection .image {
+    height: 215px;
     text-align: center;
     overflow: hidden;
 }

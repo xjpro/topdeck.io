@@ -17,53 +17,82 @@
 
 <div class="container">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well">
-                <h1>topdeck.io</h1>
-                <p class="lead">
-                    A fancier deck builder for <a href="http://us.battle.net/hearthstone/en/">Hearthstone</a>
-                </p>
-                <div>
-                    <a class="btn btn-primary" href="/decks">Start a deck</a>
-                </div>
+    <div class="row well">
+        <div class="col-md-7">
+            <h1>topdeck.io</h1>
+            <p class="lead">
+                A deck builder tool for creating and sharing <a href="http://us.battle.net/hearthstone/en/">Hearthstone</a> decks.
+            </p>
+            <div>
+                <a class="btn btn-primary" href="/decks">Start a deck</a>
             </div>
+        </div>
+        <div class="col-md-5">
+
         </div>
     </div>
 
 
     <div class="row">
 
-        <h3 class="col-md-12">Most viewed decks</h3>
+        <div class="col-md-12">
 
-        <ul class="list-unstyled recently-created">
-            <% for(var i = 0; i < recentDecks.length; i++) {
-                var deck = recentDecks[i];
-                var guid = createGuid(deck._id.toString());
-            %>
-            <li class="col-md-4">
-                <div class="image">
-                    <a href="/decks/<%=guid%>">
-                        <img src="/img/decks/<%=guid%>.png"/>
-                    </a>
-                </div>
-                <div class="">
-                    <h4 class="col-xs-6">
-                        <a href="/decks/<%=guid%>"><%=deck.title%></a>
-                    </h4>
-                    <div class="col-xs-6 text-right">
-                        <i class="fa fa-code-fork"></i> <%=deck.forked%>
-                        <i class="fa fa-eye"></i> <%=deck.viewed%>
+            <h3>Decks being created:</h3>
+
+            <ul class="nav nav-tabs">
+                <li>
+                    <a href="#decktype0" data-toggle="tab">Recent</a>
+                </li>
+                <li>
+                    <a href="#decktype1" data-toggle="tab">Most viewed</a>
+                </li>
+                <li>
+                    <a href="#decktype2" data-toggle="tab">Most copied</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <%
+                var deckCollections = [mostRecent, mostViewed, mostCopied];
+                for(var i = 0; i < deckCollections.length; i++) {
+                    var deckCollection = deckCollections[i];
+                %>
+                    <div class="tab-pane" id="decktype<%=i%>">
+                        <ul class="list-unstyled list-deckcollection">
+                            <%
+                            for(var j = 0; j < deckCollection.length; j++) {
+                                var deck = deckCollection[j];
+                                var guid = createGuid(deck._id.toString());
+                            %>
+                            <li class="col-md-4">
+                                <div class="image">
+                                    <a href="/decks/<%=guid%>">
+                                        <img src="/img/decks/<%=guid%>.png"/>
+                                    </a>
+                                </div>
+                                <div class="">
+                                    <h4 class="col-xs-6">
+                                        <a href="/decks/<%=guid%>"><%=deck.title%></a>
+                                    </h4>
+                                    <div class="col-xs-6 text-right">
+                                        <i class="fa fa-code-fork"></i> <%=deck.forked%>
+                                        <i class="fa fa-eye"></i> <%=deck.viewed%>
+                                    </div>
+                                </div>
+                                <!--
+                                <%= deck.hero %>
+                                    Last updated <%=deck.updated%>
+                                -->
+                            </li>
+                            <%}%>
+                        </ul>
                     </div>
-                </div>
-                <!--
-                <%= deck.hero %>
-                    Last updated <%=deck.updated%>
-                -->
-            </li>
-            <%}%>
-        </ul>
+                <%}%>
 
+            </div>
+            <script>
+                $(".nav-tabs li:first a").click();
+            </script>
+        </div>
     </div>
 
 </div>
