@@ -52,7 +52,7 @@ app.controller("CardSelectionController", ["$scope", "$filter", "Deck", "CardLoo
     };
 
     $scope.$watch("mode", function(newMode) {
-        $scope.cardPageSize = newMode == "Cards" ? 12 : 24;
+        $scope.cardPageSize = newMode == "Cards" ? 10 : 33;
     });
 
     $scope.$watch(function() { return $scope.mode + $scope.costFilter + $scope.textFilter + Deck.hero; }, function() {

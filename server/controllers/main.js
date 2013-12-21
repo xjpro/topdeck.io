@@ -8,7 +8,7 @@ exports.index = function(db) {
 
         var deckCollection = db.get("decks");
 
-        async.series([
+        async.parallel([
             function(callback) {
                 var lagTimeMinutesAgo = new Date(new Date().getTime() - 1.5 * 60000); // don't show for 90 seconds to ensure image has been created
                 deckCollection.find({ updated: { $lt: lagTimeMinutesAgo }}, { sort: { updated: -1 }, limit: 6 }, function(error, decks) {

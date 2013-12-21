@@ -81,7 +81,7 @@
                 </button>
                 <div ng-switch="mode">
                     <div ng-switch-when="Cards">
-                        <ul class="card-selector-images list-unstyled list-col6">
+                        <ul class="card-selector-images list-unstyled list-col5">
                             <li ng-repeat="card in currentPage">
                                 <button class="btn btn-link"
                                         tooltip="{{card.title}}"
@@ -95,7 +95,7 @@
                         <ul class="card-list list-unstyled list-col3">
                             <li ng-repeat="card in currentPage">
                                 <button class="btn btn-link"
-                                        title="{{card.title}}"
+                                        tooltip="{{card.title}}"
                                         ng-click="addCard(card)">
                                     {{card.name}}
                                 </button>
