@@ -225,6 +225,11 @@ ul.selected-card-list.list-col3 li {
 .btn-paging-next {
     right: 15px;
 }
+.btn-paging-more {
+    position: absolute;
+    top: 370px;
+    right: 50px;
+}
 .btn-group-cost {
     padding-right: 0;
     text-align: right;

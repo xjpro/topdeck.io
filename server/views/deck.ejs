@@ -90,6 +90,11 @@
                                 </button>
                             </li>
                         </ul>
+                        <button class="btn btn-lg btn-link btn-paging-more"
+                                ng-hide="currentPage.length == 10 || cardPagesCount <= 1 || cardPagesIndex == cardPagesCount-1"
+                                ng-click="cardPagesIndex = cardPagesIndex+1">
+                            Neutral cards <i class="fa fa-arrow-right"></i>
+                        </button>
                     </div>
                     <div ng-switch-when="List">
                         <ul class="card-list list-unstyled list-col3">
@@ -103,6 +108,7 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
 
             <!-- selector options -->
